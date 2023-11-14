@@ -18,7 +18,7 @@ const LandingLayout = () => {
 
   return (
     <div>
-      <div className="p-10 flex items-center justify-between shadow fixed w-screen bg-white">
+      <div className="p-10 flex items-center justify-between shadow fixed w-screen bg-white z-20">
         <Link to="/">
           <img src={Logo} className="w-[200px]" />
         </Link>

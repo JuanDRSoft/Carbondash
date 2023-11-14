@@ -7,6 +7,7 @@ import Register from "./auth/Register";
 import LandingLayout from "./Layout/LandingLayout";
 import Home from "./pages/Home";
 import NotFound from "./utils/notFound";
+import Scope1 from "./pages/Scope1";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -17,6 +18,7 @@ function App() {
         {/* Landing */}
         <Route path="/" element={<LandingLayout />}>
           <Route index element={<Home />} />
+          <Route path="/scope-1" element={<Scope1 />} />
         </Route>
 
         {/* auth */}
