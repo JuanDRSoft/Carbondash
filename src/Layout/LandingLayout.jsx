@@ -2,8 +2,11 @@ import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import Logo from "/logo.png";
 import { menu } from "../utils/menu";
+import useAuth from "../hooks/useAuth";
 
 const LandingLayout = () => {
+  const { auth, cerrarSesionAuth } = useAuth();
+
   const open = (e) => {
     document.getElementById(e)?.classList.toggle("hidden");
   };
@@ -29,7 +32,9 @@ const LandingLayout = () => {
               to={e.link}
               onMouseEnter={() => open(e.key)}
               onMouseLeave={() => open(e.key)}
-              className="relative flex items-center gap-3 p-1 hover:bg-gray-100 rounded-full px-3 cursor-pointer"
+              className={`${
+                auth.token && e.key == "login" && "hidden"
+              } relative flex items-center gap-3 p-1 hover:bg-gray-100 rounded-full px-3 cursor-pointer`}
             >
               {e.title}
               {e.submenu && <i class="fas fa-sort-down"></i>}
@@ -52,6 +57,28 @@ const LandingLayout = () => {
               )}
             </Link>
           ))}
+          {auth.token && (
+            <div
+              onMouseEnter={() => open(auth.token)}
+              onMouseLeave={() => open(auth.token)}
+              className="font-semibold relative flex items-center gap-3 p-1 hover:bg-gray-100 rounded-full px-3 cursor-pointer"
+            >
+              Hello {auth.name}! <i class="fas fa-sort-down"></i>
+              <div
+                className="absolute top-0 left-0 border bg-white w-full rounded-lg hidden"
+                id={auth.token}
+              >
+                <ul>
+                  <li
+                    className="font-semibold border-b p-2 hover:text-[#2dbf1d]"
+                    onClick={cerrarSesionAuth}
+                  >
+                    Cerrar Sesión
+                  </li>
+                </ul>
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="md:hidden flex">
@@ -79,12 +106,37 @@ const LandingLayout = () => {
               <img src={Logo} className="w-[200px] mb-10" />
 
               <div className="grid justify-center text-center gap-3">
+                {auth.token && (
+                  <div>
+                    <div
+                      onClick={() => openMobile(auth.token)}
+                      className="font-bold gap-3 p-1 hover:bg-gray-100 rounded-full px-3 cursor-pointer flex justify-center"
+                    >
+                      Hello {auth.name}!<i class="fas fa-sort-down"></i>
+                    </div>
+                    <div
+                      className="top-0 left-0 border bg-white w-full rounded-lg hidden"
+                      id={`${auth.token}-mobile`}
+                    >
+                      <ul>
+                        <li
+                          className="font-semibold border-b p-2 hover:text-[#2dbf1d]"
+                          onClick={cerrarSesionAuth}
+                        >
+                          Cerrar Sesión
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                )}
                 {menu.map((e) => (
                   <div>
                     <Link
                       to={e.link}
                       onClick={() => openMobile(e.key)}
-                      className="gap-3 p-1 hover:bg-gray-100 rounded-full px-3 cursor-pointer flex justify-center"
+                      className={`${
+                        auth.token && e.key == "login" && "hidden"
+                      } gap-3 p-1 hover:bg-gray-100 rounded-full px-3 cursor-pointer flex justify-center`}
                     >
                       {e.title}
                       {e.submenu && <i class="fas fa-sort-down"></i>}

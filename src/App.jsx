@@ -10,28 +10,33 @@ import NotFound from "./utils/notFound";
 import Scope1 from "./pages/Scope1";
 import Scope2 from "./pages/Scope2";
 import Scope3 from "./pages/Scope3";
+import { ToastContainer } from "react-toastify";
+import { AuthProvider } from "./context/AuthProvider";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <BrowserRouter>
-      <Routes>
-        {/* Landing */}
-        <Route path="/" element={<LandingLayout />}>
-          <Route index element={<Home />} />
-          <Route path="/scope-1" element={<Scope1 />} />
-          <Route path="/scope-2" element={<Scope2 />} />
-          <Route path="/scope-3" element={<Scope3 />} />
-        </Route>
+      <AuthProvider>
+        <ToastContainer />
+        <Routes>
+          {/* Landing */}
+          <Route path="/" element={<LandingLayout />}>
+            <Route index element={<Home />} />
+            <Route path="/scope-1" element={<Scope1 />} />
+            <Route path="/scope-2" element={<Scope2 />} />
+            <Route path="/scope-3" element={<Scope3 />} />
+          </Route>
 
-        {/* auth */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+          {/* auth */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
-        {/* Error */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+          {/* Error */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   );
 }
