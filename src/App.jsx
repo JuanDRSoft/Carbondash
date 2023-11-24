@@ -12,6 +12,7 @@ import Scope2 from "./pages/Scope2";
 import Scope3 from "./pages/Scope3";
 import { ToastContainer } from "react-toastify";
 import { AuthProvider } from "./context/AuthProvider";
+import Reports from "./pages/Reports";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -27,6 +28,7 @@ function App() {
             <Route path="/scope-1" element={<Scope1 />} />
             <Route path="/scope-2" element={<Scope2 />} />
             <Route path="/scope-3" element={<Scope3 />} />
+            <Route path="/reports" element={<Reports />} />
           </Route>
 
           {/* auth */}

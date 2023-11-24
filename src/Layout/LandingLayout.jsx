@@ -171,7 +171,7 @@ const LandingLayout = () => {
         </div>
       </div>
 
-      <div className="pt-36 p-10">
+      <div className="pt-36 xl:px-36 md:px-24 px-10">
         <Outlet />
       </div>
     </div>

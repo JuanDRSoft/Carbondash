@@ -1,19 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Select from "../components/Select";
+import useAuth from "../hooks/useAuth";
 
 const Scope1 = () => {
-  const [scope1, setScope1] = useState({
-    1: "",
-    "1a": 0,
-    "1b": 0,
-    2: "",
-    "2a": 0,
-    "2b": 0,
-    3: "",
-    "3a": 0,
-    4: 0,
-    "4a": 0,
-  });
+  const { scope1, setScope1 } = useAuth();
   const [progress, setProgress] = useState(0);
 
   return (
@@ -24,7 +14,7 @@ const Scope1 = () => {
           style={{ width: `${progress}%` }}
         ></div>
       </div>
-      <div className="grid xl:grid-cols-3 md:grid-cols-2 p-5">
+      <div className="grid md:grid-cols-2 p-5">
         <div className="md:border-r md:pr-2">
           <h1 className="font-bold italic text-xl mb-2">Scope 1</h1>
           <p className="font-semibold text-gray-500 mb-8 text-sm">
@@ -33,8 +23,7 @@ const Scope1 = () => {
           </p>
 
           <label>
-            1. Did your business own or lease gasoline / unleaded petrol cars
-            during the time period?
+            1. Did your company own or maintain long-term leases on vehicles?
           </label>
           <Select
             value={scope1[1]}
@@ -42,8 +31,8 @@ const Scope1 = () => {
           />
 
           <label>
-            1a. How many litres of gasoline / unleaded petrol did you use during
-            the time period in your vehicles?
+            1a. How many litres of petrol and diesel fuel did your company’s
+            vehicles use?
           </label>
           <input
             className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-5"
@@ -53,8 +42,8 @@ const Scope1 = () => {
           />
 
           <label>
-            1b. How much did you spend on gasoline / unleaded petrol fuel during
-            the time period?
+            1b. How much did your company spend on petrol and diesel fuel for
+            vehicles?
           </label>
           <input
             className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-5"
@@ -62,21 +51,20 @@ const Scope1 = () => {
             onChange={(e) => setScope1({ ...scope1, "1b": e.target.value })}
             type="number"
           />
+        </div>
 
+        <div className="md:pl-2 xl:px-2">
           <label>
-            2. Did your business own or lease diesel cars during the time
-            period?
+            2. Did your company own or maintain long-term leases on machinery?
           </label>
           <Select
             value={scope1[2]}
             set={(e) => setScope1({ ...scope1, 2: e })}
           />
-        </div>
 
-        <div className="md:pl-2 xl:px-2">
           <label>
-            2a. How many litres of diesel fuel did you use during the time
-            period in your vehicles?
+            2a. How many litres of petrol and diesel fuel did your company’s
+            machinery use?
           </label>
           <input
             className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-5"
@@ -86,50 +74,13 @@ const Scope1 = () => {
           />
 
           <label>
-            2b. How much did you spend on diesel fuel during the time period?
+            2b. How much did your company spend on petrol and diesel fuel for
+            machinery?
           </label>
           <input
             className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-5"
             value={scope1["2b"]}
             onChange={(e) => setScope1({ ...scope1, "2b": e.target.value })}
-            type="number"
-          />
-
-          <label>
-            3. If you owned or leased heavy machinery during this time period,
-            what fuel did it use?
-          </label>
-          <Select
-            value={scope1[3]}
-            set={(e) => setScope1({ ...scope1, 3: e })}
-          />
-
-          <label>3a. How many litres of fuel did you use?</label>
-          <input
-            className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-5"
-            value={scope1["3a"]}
-            onChange={(e) => setScope1({ ...scope1, "3a": e.target.value })}
-            type="number"
-          />
-
-          <label>
-            4. If you owned or leased a generator during this time period, what
-            fuel did it use?
-          </label>
-          <input
-            className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-5"
-            value={scope1[4]}
-            onChange={(e) => setScope1({ ...scope1, 4: e.target.value })}
-            type="number"
-          />
-        </div>
-
-        <div className="xl:border-l xl:border-t-0 xl:pl-2 md:border-t md:border-r md:pt-5 md:pr-2">
-          <label>4a. How many litres of fuel did you use?</label>
-          <input
-            className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-5"
-            value={scope1["4a"]}
-            onChange={(e) => setScope1({ ...scope1, "4a": e.target.value })}
             type="number"
           />
         </div>
