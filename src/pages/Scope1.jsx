@@ -3,7 +3,7 @@ import Select from "../components/Select";
 import useAuth from "../hooks/useAuth";
 
 const Scope1 = () => {
-  const { scope1, setScope1 } = useAuth();
+  const { scope1, setScope1, saveScope1 } = useAuth();
   const [progress, setProgress] = useState(0);
 
   return (
@@ -87,7 +87,10 @@ const Scope1 = () => {
       </div>
 
       <div className="flex justify-center pb-5 pt-5">
-        <button className="font-bold text-xl hover:bg-green-700 w-[80%] text-white rounded-full shadow bg-[#2dbf1d] md:w-[50%] xl:w-[35%] p-2">
+        <button
+          onClick={saveScope1}
+          className="font-bold text-xl hover:bg-green-700 w-[80%] text-white rounded-full shadow bg-[#2dbf1d] md:w-[50%] xl:w-[35%] p-2"
+        >
           SAVE <i class="fas fa-chevron-right"></i>
         </button>
       </div>

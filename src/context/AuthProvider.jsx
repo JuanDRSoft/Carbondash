@@ -18,10 +18,6 @@ const AuthProvider = ({ children }) => {
     2: "",
     "2a": 0,
     "2b": 0,
-    3: "",
-    "3a": 0,
-    4: 0,
-    "4a": 0,
   });
 
   const [scope2, setScope2] = useState({
@@ -97,6 +93,50 @@ const AuthProvider = ({ children }) => {
     toast.success("Logged out successfully");
   };
 
+  const saveScope1 = async () => {
+    if (!auth.id) {
+      toast.error("Register or log in to submit a response");
+      return;
+    }
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${ApiKey}`,
+      },
+    };
+
+    const bodyData = {
+      fields: {
+        "Customer Name": auth.name,
+        "Did your company own or maintain long-term leases on vehicles?":
+          scope1[1],
+        "How many litres of petrol and diesel fuel did your company’s vehicles use?":
+          Number(scope1["1a"]),
+        "How much did your company spend on petrol and diesel fuel for vehicles?":
+          Number(scope1["1b"]),
+        "Did your company own or maintain long-term leases on machinery?":
+          scope1[2],
+        "How many litres of petrol and diesel fuel did your company’s machinery use?":
+          Number(scope1["2a"]),
+        "How much did your company spend on petrol and diesel fuel for machinery?":
+          Number(scope1["2a"]),
+      },
+    };
+
+    try {
+      const data = await axios.post(
+        `${baseUrl}/appJCp1Y4OgnXBC9C/Customer%20Answers`,
+        bodyData,
+        config
+      );
+
+      toast.success("Scope 1 Saved Successfully");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -110,6 +150,7 @@ const AuthProvider = ({ children }) => {
         setScope2,
         scope3,
         setScope3,
+        saveScope1,
       }}
     >
       {children}
