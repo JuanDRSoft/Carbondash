@@ -61,21 +61,17 @@ const AuthProvider = ({ children }) => {
         },
       };
 
-      const query = {
-        params: {
-          filterByFormula: `token = ${token}`,
-        },
-      };
-
       try {
         const { data } = await axios.get(
           `${baseUrl}/appZtT2Tb57qF6PrF/Users`,
-          config,
-          query
+          config
         );
 
         if (data.records.length > 0) {
-          setAuth(data.records[0].fields);
+          const newData = data.records.find((e) => e.fields.token == token);
+          if (newData) {
+            setAuth(newData.fields);
+          }
         }
       } catch (error) {
         console.log(error);
@@ -84,6 +80,7 @@ const AuthProvider = ({ children }) => {
         setCargando(false);
       }
     };
+
     autenticarAdmin();
   }, []);
 
@@ -94,7 +91,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const saveScope1 = async () => {
-    if (!auth.id) {
+    if (!auth.token) {
       toast.error("Register or log in to submit a response");
       return;
     }

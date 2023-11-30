@@ -12,6 +12,7 @@ import {
 } from "../utils/Data";
 import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
+import useAuth from "../hooks/useAuth";
 
 const Register = () => {
   const [company, setCompany] = useState("");
@@ -28,6 +29,8 @@ const Register = () => {
   const [period, setPeriod] = useState(null);
 
   const navigate = useNavigate();
+
+  const { setAuth } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,6 +68,7 @@ const Register = () => {
         { headers }
       );
 
+      setAuth(body.fields);
       localStorage.setItem("Token", token);
       toast.success("Profile Created Successfully");
       navigate("/");

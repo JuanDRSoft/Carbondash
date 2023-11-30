@@ -20,6 +20,10 @@ const Login = () => {
 
     setLoading(true);
 
+    const query = {
+      // filterByFormula: `AND(email=${email},password=${password})`,
+    };
+
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -27,25 +31,23 @@ const Login = () => {
       },
     };
 
-    const query = {
-      params: {
-        filterByFormula: `AND(email = ${email},password = ${password})`,
-      },
-    };
-
     try {
       const { data } = await axios.get(
         `${baseUrl}/appZtT2Tb57qF6PrF/Users`,
-        config,
-        query
+        config
       );
 
       if (data.records.length > 0) {
-        const newData = data.records[0].fields;
+        const newData = data.records.find(
+          (e) => e.fields.email == email && e.fields.password == password
+        );
 
-        if (newData.email == email && newData.password == password) {
-          setAuth(newData);
-          localStorage.setItem("Token", newData.token);
+        if (
+          newData.fields.email == email &&
+          newData.fields.password == password
+        ) {
+          setAuth(newData.fields);
+          localStorage.setItem("Token", newData.fields.token);
           setLoading(false);
           toast.success("Hello, Welcome to Carbondash!");
           navigate("/");
