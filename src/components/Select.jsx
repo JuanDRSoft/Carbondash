@@ -2,19 +2,19 @@ import { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 
-const people = [{ name: "YES" }, { name: "NO" }];
-
-const Select = ({ value, set }) => {
+const Select = ({ value, set, people }) => {
   const [selected, setSelected] = useState({
     name: "Type or select an option",
   });
 
   return (
     <div className="">
-      <Listbox value={value || selected} onChange={(e) => set(e.name)}>
-        <div className="relative mt-1 mb-5 ">
-          <Listbox.Button className="relative w-full cursor-default border-[#2dbf1d] bg-white py-2 pl-3 pr-10 text-left border-b focus:outline-none sm:text-sm">
-            <span className="block truncate">{value || selected.name}</span>
+      <Listbox value={value || selected} onChange={(e) => set(e)}>
+        <div className="relative mt-4 mb-5 ">
+          <Listbox.Button className="relative w-full outline-[#2dbf1d]  focus:outline outline-2 bg-white py-2 pl-3 pr-10 text-left border rounded-lg sm:text-sm">
+            <span className="truncate bg-purple-300 rounded-full px-2">
+              {value || selected.name}
+            </span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <ChevronUpDownIcon
                 className="h-5 w-5 text-gray-400"
@@ -28,7 +28,7 @@ const Select = ({ value, set }) => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+            <Listbox.Options className="absolute mt-1 z-10 outline-[#2dbf1d]  focus:outline outline-2 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 sm:text-sm">
               {people.map((person, personIdx) => (
                 <Listbox.Option
                   key={personIdx}
@@ -43,12 +43,12 @@ const Select = ({ value, set }) => {
                     <>
                       <span
                         className={`block truncate ${
-                          value == person.name ? "font-medium" : "font-normal"
+                          value == person ? "font-medium" : "font-normal"
                         }`}
                       >
-                        {person.name}
+                        {person}
                       </span>
-                      {value == person.name ? (
+                      {value == person ? (
                         <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-green-600">
                           <CheckIcon className="h-5 w-5" aria-hidden="true" />
                         </span>

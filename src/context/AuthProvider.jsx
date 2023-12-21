@@ -12,12 +12,25 @@ const AuthProvider = ({ children }) => {
   const [cargando, setCargando] = useState(true);
 
   const [scope1, setScope1] = useState({
+    name: "",
     1: "",
-    "1a": 0,
-    "1b": 0,
+    1.1: 0,
+    1.2: 0,
+    1.3: 0,
+    1.4: 0,
+
     2: "",
-    "2a": 0,
-    "2b": 0,
+    2.1: 0,
+    2.2: 0,
+    2.3: 0,
+    2.4: 0,
+    2.5: 0,
+
+    3: "",
+    3.1: 0,
+    3.2: 0,
+    3.3: 0,
+    3.4: 0,
   });
 
   const [scope2, setScope2] = useState({
@@ -105,19 +118,37 @@ const AuthProvider = ({ children }) => {
 
     const bodyData = {
       fields: {
-        "Customer Name": auth.name,
-        "Did your company own or maintain long-term leases on vehicles?":
+        "Customer Name": scope1.name,
+        "1. Did your company own or maintain long-term leases on vehicles?":
           scope1[1],
-        "How many litres of petrol and diesel fuel did your company’s vehicles use?":
-          Number(scope1["1a"]),
-        "How much did your company spend on petrol and diesel fuel for vehicles?":
-          Number(scope1["1b"]),
-        "Did your company own or maintain long-term leases on machinery?":
+        "1.1 How many litres of gasoline / unleaded petrol did you use in your vehicles?":
+          scope1["1.1"],
+        "1.2 How much did your company spend on gasoline / unleaded petrol fuel for your vehicles?":
+          scope1["1.2"],
+        "1.3 How many litres of diesel did you use in your vehicles?":
+          scope1["1.3"],
+        "1.4 How much did your company spend on diesel for your vehicles?":
+          scope1["1.4"],
+        "2. MACHINERY Did your company own or maintain long-term leases on machinery or generators?":
           scope1[2],
-        "How many litres of petrol and diesel fuel did your company’s machinery use?":
-          Number(scope1["2a"]),
-        "How much did your company spend on petrol and diesel fuel for machinery?":
-          Number(scope1["2a"]),
+        "2.1 How many litres of gasoline / unleaded petrol did you use in your machinery?":
+          scope1["2.1"],
+        "2.2 How much did your company spend on gasoline / unleaded petrol fuel for your machinery?":
+          scope1["2.2"],
+        "2.3 How many litres of diesel did you use in your machinery?":
+          scope1["2.3"],
+        "2.4 How much did your company spend on diesel for your machinery?":
+          scope1["2.4"],
+        "2.5 Approximately how much kerosene did you use in your generators?":
+          scope1["2.5"],
+        "3. Do you have commercial air conditioning or refrigerators in your place of business that required servicing?":
+          scope1[3],
+        "3.1 How many air conditioning units do you have?": scope1["3.1"],
+        "3.2 How many refrigeration units do you have?": scope1["3.2"],
+        "3.3 How many times were the air conditioners serviced during the time period?":
+          scope1["3.3"],
+        "3.4 How many times were your refrigerators serviced during the time period?":
+          scope1["3.4"],
       },
     };
 

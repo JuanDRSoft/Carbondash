@@ -3,6 +3,8 @@ export const ApiKey =
 
 export const baseUrl = "https://api.airtable.com/v0";
 
+export const yesNo = ["YES", "NO"];
+
 export const industries = [
   "Professional Services",
   "Industrial Services",
@@ -37,4 +39,12 @@ export const periods = [
   "2021 Calendar Year",
   "FY 2020-21",
   "2020 Calendar Year",
+];
+
+export const maintains = [
+  "Gasoline / unleaded petrol",
+  "Diesel vehicles",
+  "Gasoline / unleaded petrol machinery",
+  "Diesel machinery",
+  "None of the above",
 ];
