@@ -51,7 +51,7 @@ const Scope1 = () => {
                   <Select
                     value={scope1["1.1"]}
                     set={(e) => setScope1({ ...scope1, 1.1: e })}
-                    people={[12.0, 213.0, 500.0]}
+                    people={["12.0", "213.0", "500.0"]}
                   />
                 </div>
 
@@ -62,7 +62,9 @@ const Scope1 = () => {
                   </label>
                   <input
                     value={scope1["1.2"]}
-                    onChange={(e) => setScope1({ ...scope1, 1.2: e })}
+                    onChange={(e) =>
+                      setScope1({ ...scope1, 1.2: e.target.value })
+                    }
                     type="number"
                     className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
                   />
@@ -79,7 +81,9 @@ const Scope1 = () => {
 
                   <input
                     value={scope1["1.3"]}
-                    onChange={(e) => setScope1({ ...scope1, 1.3: e })}
+                    onChange={(e) =>
+                      setScope1({ ...scope1, 1.3: e.target.value })
+                    }
                     type="number"
                     className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
                   />
@@ -93,7 +97,9 @@ const Scope1 = () => {
 
                   <input
                     value={scope1["1.4"]}
-                    onChange={(e) => setScope1({ ...scope1, 1.4: e })}
+                    onChange={(e) =>
+                      setScope1({ ...scope1, 1.4: e.target.value })
+                    }
                     type="number"
                     className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
                   />
@@ -130,7 +136,9 @@ const Scope1 = () => {
 
                   <input
                     value={scope1["2.1"]}
-                    onChange={(e) => setScope1({ ...scope1, 2.1: e })}
+                    onChange={(e) =>
+                      setScope1({ ...scope1, 2.1: e.target.value })
+                    }
                     type="number"
                     className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
                   />
@@ -144,7 +152,9 @@ const Scope1 = () => {
 
                   <input
                     value={scope1["2.2"]}
-                    onChange={(e) => setScope1({ ...scope1, 2.2: e })}
+                    onChange={(e) =>
+                      setScope1({ ...scope1, 2.2: e.target.value })
+                    }
                     type="number"
                     className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
                   />
@@ -161,7 +171,9 @@ const Scope1 = () => {
 
                   <input
                     value={scope1["2.3"]}
-                    onChange={(e) => setScope1({ ...scope1, 2.3: e })}
+                    onChange={(e) =>
+                      setScope1({ ...scope1, 2.3: e.target.value })
+                    }
                     type="number"
                     className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
                   />
@@ -175,7 +187,9 @@ const Scope1 = () => {
 
                   <input
                     value={scope1["2.4"]}
-                    onChange={(e) => setScope1({ ...scope1, 2.4: e })}
+                    onChange={(e) =>
+                      setScope1({ ...scope1, 2.4: e.target.value })
+                    }
                     type="number"
                     className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
                   />
@@ -192,7 +206,9 @@ const Scope1 = () => {
 
                 <input
                   value={scope1["2.5"]}
-                  onChange={(e) => setScope1({ ...scope1, 2.5: e })}
+                  onChange={(e) =>
+                    setScope1({ ...scope1, 2.5: e.target.value })
+                  }
                   type="number"
                   className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
                 />
@@ -223,7 +239,9 @@ const Scope1 = () => {
 
                   <input
                     value={scope1["3.1"]}
-                    onChange={(e) => setScope1({ ...scope1, 3.1: e })}
+                    onChange={(e) =>
+                      setScope1({ ...scope1, 3.1: e.target.value })
+                    }
                     type="number"
                     className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
                   />
@@ -248,7 +266,9 @@ const Scope1 = () => {
 
                   <input
                     value={scope1["3.2"]}
-                    onChange={(e) => setScope1({ ...scope1, 3.2: e })}
+                    onChange={(e) =>
+                      setScope1({ ...scope1, 3.2: e.target.value })
+                    }
                     type="number"
                     className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
                   />
@@ -269,7 +289,10 @@ const Scope1 = () => {
         </div>
 
         <div className="bg-[#E5FAE6] rounded-b-3xl p-6 flex justify-end pr-16">
-          <button className="bg-[#2dbf1d] px-6 p-1 rounded-lg font-bold text-white">
+          <button
+            onClick={saveScope1}
+            className="bg-[#2dbf1d] px-6 p-1 rounded-lg font-bold text-white"
+          >
             Save
           </button>
         </div>
