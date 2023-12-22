@@ -323,7 +323,7 @@ const AuthProvider = ({ children }) => {
         "3.1 Couriers & road freight": Number(scope3["3.1"]),
         "3.2 Air freight": Number(scope3["3.2"]),
         "3.3 Train freight": Number(scope3["3.3"]),
-        "3.4 Sean freight": Number(scope3["3.4"]),
+        "3.4 Sea freight": Number(scope3["3.4"]),
 
         "4.1 Furniture": Number(scope3["4.1"]),
         "4.2 Packaging & paper": Number(scope3["4.2"]),
@@ -347,7 +347,7 @@ const AuthProvider = ({ children }) => {
         "5.4 Other machinery, tools & equipment": Number(scope3["5.4"]),
 
         "6.1 Legal, accounting & consultancy services": Number(scope3["6.1"]),
-        " 6.2 IT Services (includes software, subscriptions, cloud computing, IT outsourcing etc)":
+        "6.2 IT Services (includes software, subscriptions, cloud computing, IT outsourcing etc)":
           Number(scope3["6.2"]),
         "6.3 Insurance, Superannuation & pensions": Number(scope3["6.3"]),
         "6.4 Banking fees etc": Number(scope3["6.4"]),
