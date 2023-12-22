@@ -8,15 +8,33 @@ const Scope1 = () => {
 
   const calculeVehicle = () => {
     if (scope1["1"].includes("Gasoline")) {
-      const Calc =
-        (Number(scope1["1.1"]) + Number(scope1["1.2"])) * 1.368 * 67.62;
+      if (scope1["1.2"]) {
+        const Calc =
+          ((Number(scope1["1.1"]) + Number(scope1["1.2"])) / 184.5) *
+          1.368 *
+          67.62;
 
-      return Calc.toFixed(2);
+        return Calc.toFixed(2);
+      } else {
+        const Calc =
+          (Number(scope1["1.1"]) + Number(scope1["1.2"])) * 1.368 * 67.62;
+
+        return Calc.toFixed(2);
+      }
     } else if (scope1["1"].includes("Diesel")) {
-      const Calc =
-        (Number(scope1["1.3"]) + Number(scope1["1.4"])) * 1.544 * 70.41;
+      if (scope1["1.4"]) {
+        const Calc =
+          ((Number(scope1["1.3"]) + Number(scope1["1.4"])) / 210.36) *
+          1.544 *
+          70.41;
 
-      return Calc.toFixed(2);
+        return Calc.toFixed(2);
+      } else {
+        const Calc =
+          (Number(scope1["1.3"]) + Number(scope1["1.4"])) * 1.544 * 70.41;
+
+        return Calc.toFixed(2);
+      }
     } else {
       return 0;
     }
@@ -24,15 +42,37 @@ const Scope1 = () => {
 
   const calculeMachinery = () => {
     if (scope1["2"].includes("Gasoline")) {
-      const Calc =
-        (Number(scope1["2.1"]) + Number(scope1["2.2"])) * 1.368 * 67.62;
+      if (scope1["2.2"]) {
+        const Calc =
+          ((Number(scope1["2.1"]) + Number(scope1["2.2"])) / 184.5) *
+          1.368 *
+          67.62;
 
-      return Calc.toFixed(2);
+        return Calc.toFixed(2);
+      } else {
+        const Calc =
+          ((Number(scope1["2.1"]) + Number(scope1["2.2"])) / 210.36) *
+          1.368 *
+          67.62;
+
+        return Calc.toFixed(2);
+      }
     } else if (scope1["2"].includes("Diesel")) {
-      const Calc =
-        (Number(scope1["2.3"]) + Number(scope1["2.4"])) * 1.544 * 70.41;
+      if (scope1["2.4"]) {
+        const Calc =
+          ((Number(scope1["2.3"]) + Number(scope1["2.4"])) / 184.5) *
+          1.544 *
+          70.41;
 
-      return Calc.toFixed(2);
+        return Calc.toFixed(2);
+      } else {
+        const Calc =
+          ((Number(scope1["2.3"]) + Number(scope1["2.4"])) / 210.36) *
+          1.544 *
+          70.41;
+
+        return Calc.toFixed(2);
+      }
     } else if (scope1["2"].includes("kerosene")) {
       const Calc = Number(scope1["2.5"]) * 0.4125 * 69.11;
 
@@ -93,26 +133,38 @@ const Scope1 = () => {
 
             {scope1["1"].includes("Gasoline") && (
               <div className="grid grid-cols-2 gap-5">
-                <div>
-                  <label>
-                    1.1 How many litres of gasoline / unleaded petrol did you
-                    use in your vehicles?
-                  </label>
+                {scope1["1.2"] <= 0 && (
+                  <div>
+                    <label>
+                      1.1 How many litres of gasoline / unleaded petrol did you
+                      use in your vehicles?
+                    </label>
 
-                  <Select
-                    value={scope1["1.1"]}
-                    set={(e) => setScope1({ ...scope1, 1.1: e })}
-                    people={["12.0", "213.0", "500.0"]}
-                  />
-                </div>
+                    <p className="text-xs font-semibold text-gray-400">
+                      Leave this blank if you answered question 1.2
+                    </p>
+
+                    <Select
+                      value={scope1["1.1"]}
+                      set={(e) => setScope1({ ...scope1, 1.1: e })}
+                      people={["", "12.0", "213.0", "500.0"]}
+                    />
+                  </div>
+                )}
 
                 <div>
                   <label>
                     1.2 How much did your company spend on gasoline / unleaded
                     petrol fuel for your vehicles?
                   </label>
+
+                  <p className="text-xs font-semibold text-gray-400">
+                    Leave this blank if you answered question 1.1
+                  </p>
+
                   <input
                     value={scope1["1.2"]}
+                    disabled={scope1["1.1"] !== ""}
                     onChange={(e) =>
                       setScope1({ ...scope1, 1.2: e.target.value })
                     }
@@ -130,8 +182,13 @@ const Scope1 = () => {
                     1.3 How many litres of diesel did you use in your vehicles?
                   </label>
 
+                  <p className="text-xs font-semibold text-gray-400">
+                    Leave this blank if you answered question 1.4
+                  </p>
+
                   <input
                     value={scope1["1.3"]}
+                    disabled={scope1["1.4"] > 0}
                     onChange={(e) =>
                       setScope1({ ...scope1, 1.3: e.target.value })
                     }
@@ -146,8 +203,13 @@ const Scope1 = () => {
                     vehicles?
                   </label>
 
+                  <p className="text-xs font-semibold text-gray-400">
+                    Leave this blank if you answered question 1.3
+                  </p>
+
                   <input
                     value={scope1["1.4"]}
+                    disabled={scope1["1.3"] > 0}
                     onChange={(e) =>
                       setScope1({ ...scope1, 1.4: e.target.value })
                     }
@@ -185,8 +247,13 @@ const Scope1 = () => {
                     use in your machinery?
                   </label>
 
+                  <p className="text-xs font-semibold text-gray-400">
+                    Leave this blank if you answered question 2.2
+                  </p>
+
                   <input
                     value={scope1["2.1"]}
+                    disabled={scope1["2.2"] > 0}
                     onChange={(e) =>
                       setScope1({ ...scope1, 2.1: e.target.value })
                     }
@@ -201,8 +268,13 @@ const Scope1 = () => {
                     petrol fuel for your machinery?
                   </label>
 
+                  <p className="text-xs font-semibold text-gray-400">
+                    Leave this blank if you answered question 2.1
+                  </p>
+
                   <input
                     value={scope1["2.2"]}
+                    disabled={scope1["2.1"] > 0}
                     onChange={(e) =>
                       setScope1({ ...scope1, 2.2: e.target.value })
                     }
@@ -220,8 +292,13 @@ const Scope1 = () => {
                     2.3 How many litres of diesel did you use in your machinery?
                   </label>
 
+                  <p className="text-xs font-semibold text-gray-400">
+                    Leave this blank if you answered question 2.4
+                  </p>
+
                   <input
                     value={scope1["2.3"]}
+                    disabled={scope1["2.4"] > 0}
                     onChange={(e) =>
                       setScope1({ ...scope1, 2.3: e.target.value })
                     }
@@ -236,8 +313,13 @@ const Scope1 = () => {
                     machinery?
                   </label>
 
+                  <p className="text-xs font-semibold text-gray-400">
+                    Leave this blank if you answered question 2.3
+                  </p>
+
                   <input
                     value={scope1["2.4"]}
+                    disabled={scope1["2.3"] > 0}
                     onChange={(e) =>
                       setScope1({ ...scope1, 2.4: e.target.value })
                     }

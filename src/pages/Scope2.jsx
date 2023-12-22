@@ -6,6 +6,38 @@ const Scope2 = () => {
   const { scope2, setScope2, saveScope2 } = useAuth();
   const [progress, setProgress] = useState(0);
 
+  const calculateElectricity = () => {
+    if (scope2["2.1"]) {
+      let emission = 0;
+
+      switch (scope2["2.1"]) {
+        case "NSW":
+          emission = 0.68;
+        case "VIC":
+          emission = 0.79;
+        case "QLD":
+          emission = 0.73;
+        case "ACT":
+          emission = 0.68;
+        case "TAS":
+          emission = 0.12;
+        case "SA":
+          emission = 0.25;
+        case "NT":
+          emission = 0.54;
+        case "WA":
+          emission = 0.62;
+          break;
+      }
+
+      const calc = (Number(scope2[3]) + Number(scope2["3.1"])) * emission;
+
+      return calc;
+    } else {
+      return 0;
+    }
+  };
+
   return (
     <div className="pb-10 lg:flex gap-5">
       <div className="shadow-xl rounded-3xl bg-white">
@@ -99,6 +131,7 @@ const Scope2 = () => {
                 value={scope2["3"]}
                 onChange={(e) => setScope2({ ...scope2, 3: e.target.value })}
                 type="number"
+                disabled={scope2["3.1"] > 0}
                 className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
               />
             </div>
@@ -112,6 +145,7 @@ const Scope2 = () => {
                 value={scope2["3.1"]}
                 onChange={(e) => setScope2({ ...scope2, 3.1: e.target.value })}
                 type="number"
+                disabled={scope2[3] > 0}
                 className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
               />
             </div>
@@ -202,6 +236,18 @@ const Scope2 = () => {
           >
             Save
           </button>
+        </div>
+      </div>
+
+      <div className="shadow-xl border rounded-3xl mt-10 lg:mt-0 bg-white p-10">
+        <div className="flex items-center gap-3 justify-center">
+          <i class="fas fa-plug text-4xl text-[#005504]"></i>
+          <div>
+            <h1 className="font-bold text-xl">ELECTRICITY</h1>
+            <p className="font-semibold text-[#005504] text-lg">
+              {calculateElectricity()}
+            </p>
+          </div>
         </div>
       </div>
     </div>
