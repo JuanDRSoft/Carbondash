@@ -305,7 +305,7 @@ const Scope1 = () => {
                 <Select
                   value={scope1["3.3"]}
                   set={(e) => setScope1({ ...scope1, 3.3: e })}
-                  people={[0, 1, 2, 3, 4, 5]}
+                  people={["0", "1", "2", "3", "4", "5"]}
                 />
               </div>
             )}
@@ -332,7 +332,7 @@ const Scope1 = () => {
                 <Select
                   value={scope1["3.4"]}
                   set={(e) => setScope1({ ...scope1, 3.4: e })}
-                  people={[0, 1, 2, 3, 4, 5]}
+                  people={["0", "1", "2", "3", "4", "5"]}
                 />
               </div>
             )}

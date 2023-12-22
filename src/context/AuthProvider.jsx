@@ -36,17 +36,16 @@ const AuthProvider = ({ children }) => {
 
   const [scope2, setScope2] = useState({
     1: "",
-    "1a": 0,
-    "1b": 0,
     2: "",
-    "2a": 0,
-    "2b": 0,
-    3: "",
-    "3a": 0,
-    4: 0,
-    "4a": 0,
-    "4b": 0,
-    "4c": 0,
+    2.1: "",
+    3: 0,
+    3.1: 0,
+    4: "",
+    4.1: 0,
+    5: "",
+    5.1: "",
+    5.2: "",
+    5.3: "",
   });
 
   const [scope3, setScope3] = useState({
@@ -157,19 +156,22 @@ const AuthProvider = ({ children }) => {
         "2. MACHINERY Did your company own or maintain long-term leases on machinery or generators?":
           scope1["2"],
         "2.1 How many litres of gasoline / unleaded petrol did you use in your machinery?":
-          scope1["2.1"],
+          Number(scope1["2.1"]),
         "2.2 How much did your company spend on gasoline / unleaded petrol fuel for your machinery?":
-          scope1["2.2"],
-        "2.3 How many litres of diesel did you use in your machinery?":
-          scope1["2.3"],
+          Number(scope1["2.2"]),
+        "2.3 How many litres of diesel did you use in your machinery?": Number(
+          scope1["2.3"]
+        ),
         "2.4 How much did your company spend on diesel for your machinery?":
-          scope1["2.4"],
+          Number(scope1["2.4"]),
         "2.5 Approximately how much kerosene did you use in your generators?":
-          scope1["2.5"],
+          Number(scope1["2.5"]),
         "3. Do you have commercial air conditioning or refrigerators in your place of business that required servicing?":
           scope1[3],
-        "3.1 How many air conditioning units do you have?": scope1["3.1"],
-        "3.2 How many refrigeration units do you have?": scope1["3.2"],
+        "3.1 How many air conditioning units do you have?": Number(
+          scope1["3.1"]
+        ),
+        "3.2 How many refrigeration units do you have?": Number(scope1["3.2"]),
         "3.3 How many times were the air conditioners serviced during the time period?":
           scope1["3.3"],
         "3.4 How many times were your refrigerators serviced during the time period?":
@@ -178,13 +180,71 @@ const AuthProvider = ({ children }) => {
     };
 
     try {
-      const data = await axios.post(
+      const { data } = await axios.post(
         `${baseUrl}/appJCp1Y4OgnXBC9C/Customer%20Answers`,
         bodyData,
         config
       );
 
+      localStorage.setItem("lastId", data.id);
+
       toast.success("Scope 1 Saved Successfully");
+      navigate("/scope-2");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const saveScope2 = async () => {
+    if (!auth.token) {
+      toast.error("Register or log in to submit a response");
+      return;
+    }
+
+    const lastId = localStorage.getItem("lastId");
+
+    if (!lastId) {
+      toast.error("Fill out the scope 1 form first");
+      return;
+    }
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${ApiKey}`,
+      },
+    };
+
+    const bodyData = {
+      fields: {
+        "1. How many locations / premises does your company own or lease?":
+          scope2[1],
+        "2. What country are your business premises located in?": scope2[2],
+        "2.1 (Australia) What region or state are you located in?":
+          scope2["2.1"],
+        "3. How many kilowatt hours (kwh) of electricity did your business consume?":
+          Number(scope2[3]),
+        "3.1 How much did you spend on electricity?": Number(scope2["3.1"]),
+        "4. Do you use LED lighting in your business premises?": scope2[4],
+        "4.1 How many lightbulbs are in your business premises?": Number(
+          scope2["4.1"]
+        ),
+        "5. Is your business located in a small or large building?": scope2[5],
+        "5.1 Is it a single or multi tenant building?": scope2["5.1"],
+        "5.2 How's the weather? Is it generally sunny where you are? Are there any trees obstructing the roof?":
+          scope2["5.2"],
+        "5.3 What is your address?": scope2["5.3"],
+      },
+    };
+
+    try {
+      const data = await axios.patch(
+        `${baseUrl}/appJCp1Y4OgnXBC9C/Customer%20Answers/${lastId}`,
+        bodyData,
+        config
+      );
+
+      toast.success("Scope 2 Saved Successfully");
     } catch (error) {
       console.log(error);
     }
@@ -204,6 +264,7 @@ const AuthProvider = ({ children }) => {
         scope3,
         setScope3,
         saveScope1,
+        saveScope2,
       }}
     >
       {children}

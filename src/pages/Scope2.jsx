@@ -3,128 +3,206 @@ import Select from "../components/Select";
 import useAuth from "../hooks/useAuth";
 
 const Scope2 = () => {
-  const { scope2, setScope2 } = useAuth();
+  const { scope2, setScope2, saveScope2 } = useAuth();
   const [progress, setProgress] = useState(0);
 
   return (
-    <div className="shadow rounded">
-      <div className="w-full h-2 bg-gray-100 relative">
-        <div
-          className="absolute h-2 bg-[#2dbf1d] top-0 left-0"
-          style={{ width: `${progress}%` }}
-        ></div>
-      </div>
-      <div className="grid grid-cols-2 p-5">
-        <div className="md:border-r md:pr-2">
-          <h1 className="font-bold italic text-xl mb-2">Scope 2</h1>
-          <p className="font-semibold text-gray-500 mb-8 text-sm">
-            Answer a few simple questions and your Scope 2 carbon emissions will
-            be calculated. Onward!
+    <div className="pb-10 lg:flex gap-5">
+      <div className="shadow-xl rounded-3xl bg-white">
+        <div className="p-5">
+          <h1 className="font-bold text-3xl">Scope 2</h1>
+          <p className="mt-4">
+            Scope 2 are emissions that are caused 'indirectly' from the
+            consumption of electricity in your business premises. You should
+            have your electricity bill handy to accurately provide information
+            for this section. See our Scope 2 guide for more info.
           </p>
 
-          <label>1. How large is your office / place of work?</label>
-          <input
-            className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-5"
-            value={scope2["1"]}
-            onChange={(e) => setScope2({ ...scope2, 1: e.target.value })}
-            type="number"
-          />
+          <hr className="mt-5 mb-5" />
 
-          <label>1a. How much electricity did your company consume?</label>
-          <input
-            className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-5"
-            value={scope2["1a"]}
-            onChange={(e) => setScope2({ ...scope2, "1a": e.target.value })}
-            type="number"
-          />
+          <h1 className="font-bold mb-5">ELECTRICITY</h1>
 
-          <label>1b. How much did your company spend on electricity?</label>
+          <label>
+            1. How many locations / premises does your company own or lease?
+          </label>
+
+          <div className="mt-3">
+            <Select
+              value={scope2["1"]}
+              set={(e) => setScope2({ ...scope2, 1: e })}
+              people={[
+                "0 - fully remote",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "More than 5",
+              ]}
+            />
+          </div>
+
+          <label>2. What country are your business premises located in?</label>
+
+          <div className="mt-3">
+            <Select
+              value={scope2["2"]}
+              set={(e) => setScope2({ ...scope2, 2: e })}
+              people={[
+                "Australia",
+                "New Zealand",
+                "USA",
+                "Canada",
+                "United Kingdom",
+                "Ireland",
+                "Philippines",
+                "Malaysia",
+                "Thailand",
+                "Singapore",
+                "Indonesia",
+                "Vietnam",
+                "Portugal",
+                "Spain",
+                "Germany",
+                "Other",
+              ]}
+            />
+          </div>
+
+          {scope2["2"].includes("Australia") && (
+            <>
+              <label>
+                2.1 (Australia) What region or state are you located in?
+              </label>
+
+              <div className="mt-3">
+                <Select
+                  value={scope2["2.1"]}
+                  set={(e) => setScope2({ ...scope2, 2.1: e })}
+                  people={["NSW", "VIC", "QLD", "ACT", "TAS", "SA", "NT", "WA"]}
+                />
+              </div>
+            </>
+          )}
+
+          <div className="grid grid-cols-2 gap-10 mb-5">
+            <div>
+              <label>
+                3. How many kilowatt hours (kwh) of electricity did your
+                business consume?
+              </label>
+              <p className="text-xs font-semibold text-gray-400">
+                If you're unsure, leave this blank and answer question 3.1
+              </p>
+
+              <input
+                value={scope2["3"]}
+                onChange={(e) => setScope2({ ...scope2, 3: e.target.value })}
+                type="number"
+                className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              />
+            </div>
+
+            <div>
+              <label>3.1 How much did you spend on electricity?</label>
+              <p className="text-xs font-semibold text-gray-400">
+                Leave this blank if you answered question 3
+              </p>
+              <input
+                value={scope2["3.1"]}
+                onChange={(e) => setScope2({ ...scope2, 3.1: e.target.value })}
+                type="number"
+                className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              />
+            </div>
+          </div>
+
+          <label>4. Do you use LED lighting in your business premises?</label>
+
+          <div className="mt-3">
+            <Select
+              value={scope2["4"]}
+              set={(e) => setScope2({ ...scope2, 4: e })}
+              people={["Yes", "No"]}
+            />
+          </div>
+
+          {scope2["4"].includes("NO") && (
+            <>
+              <label>
+                4.1 How many lightbulbs are in your business premises?
+              </label>
+
+              <input
+                value={scope2["4.1"]}
+                onChange={(e) => setScope2({ ...scope2, 4.1: e.target.value })}
+                type="number"
+                className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              />
+            </>
+          )}
+
+          <label>
+            5. Is your business located in a small or large building?
+          </label>
+
+          <div className="mt-3">
+            <Select
+              value={scope2["5"]}
+              set={(e) => setScope2({ ...scope2, 5: e })}
+              people={["Small", "Large", "No building - we work remotely"]}
+            />
+          </div>
+
+          {scope2["5"].includes("Small") && (
+            <>
+              <label>5.1 Is it a single or multi tenant building?</label>
+
+              <div className="mt-3">
+                <Select
+                  value={scope2["5.1"]}
+                  set={(e) => setScope2({ ...scope2, 5.1: e })}
+                  people={["Single tenant", "Multi tenant"]}
+                />
+              </div>
+            </>
+          )}
+
+          <label>
+            5.2 How's the weather? Is it generally sunny where you are? Are
+            there any trees obstructing the roof?
+          </label>
+
+          <div className="mt-3">
+            <Select
+              value={scope2["5.2"]}
+              set={(e) => setScope2({ ...scope2, 5.2: e })}
+              people={[
+                "Generally sunny, no trees obstructing the roof",
+                "Generally sunny, but there may be some obstructions of the roof",
+                "Generally not very sunny",
+              ]}
+            />
+          </div>
+
+          <label>5.3 What is your address?</label>
+
           <input
-            className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-5"
-            value={scope2["1b"]}
-            onChange={(e) => setScope2({ ...scope2, "1b": e.target.value })}
-            type="number"
+            value={scope2["5.3"]}
+            onChange={(e) => setScope2({ ...scope2, 5.3: e.target.value })}
+            type="text"
+            className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
           />
         </div>
 
-        <div className="md:pl-2 xl:px-2">
-          {/* <label>
-            2a. How many litres of diesel fuel did you use during the time
-            period in your vehicles?
-          </label>
-          <input
-            className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-5"
-            value={scope2["2a"]}
-            onChange={(e) => setScope2({ ...scope2, "2a": e.target.value })}
-            type="number"
-          /> */}
-          <label>2. Did your company receive 100% renewable electricity?</label>
-          <Select
-            value={scope2[2]}
-            set={(e) => setScope2({ ...scope2, 2: e })}
-          />
-
-          <label>2b. Did your company receive heating?</label>
-          <Select
-            value={scope2["2b"]}
-            set={(e) => setScope2({ ...scope2, "2b": e })}
-          />
-
-          <label>3. How much heating did your company consume?</label>
-          <input
-            className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-5"
-            value={scope2[3]}
-            onChange={(e) => setScope2({ ...scope2, 3: e.target.value })}
-            type="number"
-          />
-
-          {/* <label>3a. How many litres of fuel did you use?</label>
-          <input
-            className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-5"
-            value={scope2["3a"]}
-            onChange={(e) => setScope2({ ...scope2, "3a": e.target.value })}
-            type="number"
-          /> */}
-
-          <label>4. How much did your company spend on heating?</label>
-          <input
-            className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-5"
-            value={scope2[4]}
-            onChange={(e) => setScope2({ ...scope2, 4: e.target.value })}
-            type="number"
-          />
-
-          {/* <label>
-            4a. Are your business premises less than 5 storeys tall and located
-            in a generally sunny area??
-          </label>
-          <Select
-            value={scope2["4a"]}
-            set={(e) => setScope2({ ...scope2, "4a": e.target.value })}
-          />
-
-          <label>4b. Do you know how many square metres the roof is?</label>
-          <input
-            className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-5"
-            value={scope2["4b"]}
-            onChange={(e) => setScope2({ ...scope2, "4b": e.target.value })}
-            type="number"
-          />
-
-          <label>4c. What is your business address?</label>
-          <input
-            className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-5"
-            value={scope2["4c"]}
-            onChange={(e) => setScope2({ ...scope2, "4c": e.target.value })}
-            type="number"
-          /> */}
+        <div className="bg-[#E5FAE6] rounded-b-3xl p-6 flex justify-end pr-16">
+          <button
+            onClick={saveScope2}
+            className="bg-[#2dbf1d] px-6 p-1 rounded-lg font-bold text-white"
+          >
+            Save
+          </button>
         </div>
-      </div>
-
-      <div className="flex justify-center pb-5 pt-5">
-        <button className="font-bold text-xl hover:bg-green-700 w-[80%] text-white rounded-full shadow bg-[#2dbf1d] md:w-[50%] xl:w-[35%] p-2">
-          SAVE <i class="fas fa-chevron-right"></i>
-        </button>
       </div>
     </div>
   );
