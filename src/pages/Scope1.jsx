@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Select from "../components/Select";
 import useAuth from "../hooks/useAuth";
-import { maintains, yesNo } from "../utils/Data";
 
 const Scope1 = () => {
   const { scope1, setScope1, saveScope1 } = useAuth();

@@ -177,7 +177,11 @@ const LandingLayout = () => {
         <Outlet />
       </div>
 
-      <div></div>
+      <div className="bg-[#2dbf1d] p-5">
+        <p className="text-center text-xl text-white font-semibold">
+          <i class="far fa-copyright mr-2"></i>2023 All Right Reserved
+        </p>
+      </div>
     </div>
   );
 };
