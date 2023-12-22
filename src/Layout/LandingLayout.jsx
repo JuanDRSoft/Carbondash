@@ -171,9 +171,13 @@ const LandingLayout = () => {
         </div>
       </div>
 
+      <div className="background-scopes"></div>
+
       <div className="pt-36 xl:px-36 md:px-24 px-10">
         <Outlet />
       </div>
+
+      <div></div>
     </div>
   );
 };

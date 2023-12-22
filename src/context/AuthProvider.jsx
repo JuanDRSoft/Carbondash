@@ -10,6 +10,7 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({});
   const [cargando, setCargando] = useState(true);
+  const [EF, setEF] = useState([]);
 
   const [scope1, setScope1] = useState({
     name: "",
@@ -94,6 +95,30 @@ const AuthProvider = ({ children }) => {
       }
     };
 
+    const getEF = async () => {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${ApiKey}`,
+        },
+      };
+
+      try {
+        const { data } = await axios.get(
+          `${baseUrl}/appJCp1Y4OgnXBC9C/AU%20EF%20Lookup%20Table`,
+          config
+        );
+
+        setEF(data.records);
+      } catch (error) {
+        console.log(error);
+        setAuth({});
+      } finally {
+        setCargando(false);
+      }
+    };
+
+    getEF();
     autenticarAdmin();
   }, []);
 

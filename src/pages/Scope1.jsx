@@ -7,9 +7,61 @@ const Scope1 = () => {
   const { scope1, setScope1, saveScope1 } = useAuth();
   const [progress, setProgress] = useState(0);
 
+  const calculeVehicle = () => {
+    if (scope1["1"].includes("Gasoline")) {
+      const Calc =
+        (Number(scope1["1.1"]) + Number(scope1["1.2"])) * 1.368 * 67.62;
+
+      return Calc.toFixed(2);
+    } else if (scope1["1"].includes("Diesel")) {
+      const Calc =
+        (Number(scope1["1.3"]) + Number(scope1["1.4"])) * 1.544 * 70.41;
+
+      return Calc.toFixed(2);
+    } else {
+      return 0;
+    }
+  };
+
+  const calculeMachinery = () => {
+    if (scope1["2"].includes("Gasoline")) {
+      const Calc =
+        (Number(scope1["2.1"]) + Number(scope1["2.2"])) * 1.368 * 67.62;
+
+      return Calc.toFixed(2);
+    } else if (scope1["2"].includes("Diesel")) {
+      const Calc =
+        (Number(scope1["2.3"]) + Number(scope1["2.4"])) * 1.544 * 70.41;
+
+      return Calc.toFixed(2);
+    } else if (scope1["2"].includes("kerosene")) {
+      const Calc = Number(scope1["2.5"]) * 0.4125 * 69.11;
+
+      return Calc.toFixed(2);
+    } else {
+      return 0;
+    }
+  };
+
+  const calculeRefrigerant = () => {
+    if (scope1["3"].includes("Air")) {
+      const Calc =
+        Number(scope1["3.1"]) * Number(scope1["3.3"]) * 0.4125 * 69.11;
+
+      return Calc.toFixed(2);
+    } else if (scope1["3"].includes("Refrigeration")) {
+      const Calc =
+        Number(scope1["3.2"]) * Number(scope1["3.4"]) * 0.4125 * 69.11;
+
+      return Calc.toFixed(2);
+    } else {
+      return 0;
+    }
+  };
+
   return (
-    <div className="pb-10">
-      <div className="shadow-xl border rounded-3xl">
+    <div className="pb-10 lg:flex gap-5">
+      <div className="shadow-xl border rounded-3xl bg-white">
         <div className="p-5">
           <h1 className="font-bold text-3xl">Scope 1</h1>
           <p className="mt-4">
@@ -295,6 +347,42 @@ const Scope1 = () => {
           >
             Save
           </button>
+        </div>
+      </div>
+
+      <div className="shadow-xl border rounded-3xl mt-10 lg:mt-0 bg-white">
+        <h1 className="text-center mt-10 font-bold text-3xl">CO2</h1>
+
+        <div className="p-10 flex-wrap justify-center lg:grid sm:flex grid pt-5 gap-5 lg:gap-10">
+          <div className="flex items-center gap-3">
+            <i class="fas fa-car text-4xl text-[#005504]"></i>
+            <div>
+              <h1 className="font-bold text-xl">VEHICLES</h1>
+              <p className="font-semibold text-[#005504] text-lg">
+                {calculeVehicle()}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <i class="fas fa-snowplow text-4xl text-[#005504]"></i>
+            <div>
+              <h1 className="font-bold text-xl">MACHINERY</h1>
+              <p className="font-semibold text-[#005504] text-lg">
+                {calculeMachinery()}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <i class="fas fa-temperature-low text-4xl text-[#005504]"></i>
+            <div>
+              <h1 className="font-bold text-xl">REFRIGERANT & COOLING</h1>
+              <p className="font-semibold text-[#005504] text-lg">
+                {calculeRefrigerant()}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
