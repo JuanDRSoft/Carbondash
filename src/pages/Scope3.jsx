@@ -1,425 +1,519 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Select from "../components/Select";
 import useAuth from "../hooks/useAuth";
 
 const Scope3 = () => {
-  const [subs, setSubs] = useState({
-    train: 0,
-    Flights: 0,
-    Bus: 0,
-    Car: 0,
-    hotel: 0,
-    //
-    Road: 0,
-    Air: 0,
-    sea: 0,
-    rail: 0,
-    otherTrans: 0,
-    //
-    Furniture: 0,
-    paper: 0,
-    Textiles: 0,
-    plastic: 0,
-    metal: 0,
-    chemicals: 0,
-    otherFood: 0,
-    book: 0,
-    //
-    phones: 0,
-    computers: 0,
-    purchased: 0,
-    otherMachinery: 0,
-    //
-    legal: 0,
-    software: 0,
-    insurance: 0,
-    financial: 0,
-    construction: 0,
-  });
+  const { scope3, setScope3, saveScope3 } = useAuth();
 
-  const { scope3, setScope3 } = useAuth();
+  const calculateTravel = () => {
+    const calc =
+      scope3[1] * 0.000853 +
+      scope3["1.2"] * 0.000326 +
+      scope3["1.3"] * 0.000452 +
+      scope3["1.4"] * 0.000743 +
+      scope3["1.5"] * 0.000164;
 
-  const [progress, setProgress] = useState(0);
+    return calc.toFixed(2);
+  };
 
-  useEffect(() => {
-    setScope3({
-      ...scope3,
-      "Business Travel":
-        Number(subs.train) +
-        Number(subs.Flights) +
-        Number(subs.Bus) +
-        Number(subs.Car) +
-        Number(subs.hotel),
-      "Transport / freight":
-        Number(subs.Road) +
-        Number(subs.Air) +
-        Number(subs.sea) +
-        Number(subs.otherTrans) +
-        Number(subs.rail),
-      "Materials & inventory":
-        Number(subs.Furniture) +
-        Number(subs.paper) +
-        Number(subs.Textiles) +
-        Number(subs.plastic) +
-        Number(subs.metal) +
-        Number(subs.chemicals) +
-        Number(subs.otherFood) +
-        Number(subs.book),
-      "Capital goods":
-        Number(subs.phones) +
-        Number(subs.computers) +
-        Number(subs.purchased) +
-        Number(subs.otherMachinery),
-      Services:
-        Number(subs.legal) +
-        Number(subs.software) +
-        Number(subs.insurance) +
-        Number(subs.construction) +
-        Number(subs.financial),
-    });
-  }, [subs]);
+  const calculateCommuting = () => {
+    const calc =
+      scope3["2.1"] * 0.041 +
+      scope3["2.2"] * 0 +
+      scope3["2.3"] * 0 +
+      scope3["2.4"] * 0.171 +
+      scope3["2.5"] * 0.085;
+
+    return calc.toFixed(2);
+  };
+
+  const calculateFreight = () => {
+    const calc =
+      scope3["3.1"] * 0.000328 +
+      scope3["3.2"] * 0.00434 +
+      scope3["3.3"] * 0.000188 +
+      scope3["3.4"] * 0.00138;
+
+    return calc.toFixed(2) || 0;
+  };
+
+  const calculateInventory = () => {
+    const calc =
+      scope3["4.1"] * 0.000455 +
+      scope3["4.2"] * 0.000552 +
+      scope3["4.3"] * 0.000805 +
+      scope3["4.4"] * 0.000656 +
+      scope3["4.5"] * 0.00107 +
+      scope3["4.6"] * 0.000903 +
+      scope3["4.7"] * 0.000904 +
+      scope3["4.8"] * 0.000072 +
+      scope3["4.9"] * 0.000156;
+
+    return calc.toFixed(2);
+  };
+
+  const calculateCapital = () => {
+    const calc =
+      scope3["5.1"] * 0.000311 +
+      scope3["5.2"] * 0.000339 +
+      scope3["5.3"] * 0.000218 +
+      scope3["5.4"] * 0.000427;
+
+    return calc.toFixed(2);
+  };
+
+  const calculateServices = () => {
+    const calc =
+      scope3["6.1"] * 0.0 +
+      scope3["6.2"] * 0.0 +
+      scope3["6.3"] * 0.0 +
+      scope3["6.4"] * 0.0 +
+      scope3["6.4"] * 0.0 +
+      scope3["6.5"] * 0.0;
+
+    return calc.toFixed(2) || 0;
+  };
 
   return (
-    <div className="shadow rounded">
-      <div className="w-full h-2 bg-gray-100 relative">
-        <div
-          className="absolute h-2 bg-[#2dbf1d] top-0 left-0"
-          style={{ width: `${progress}%` }}
-        ></div>
-      </div>
-      <div className="grid grid-cols-2 p-5">
-        <div className="md:border-r md:pr-2">
-          <h1 className="font-bold italic text-xl mb-2">Scope 3</h1>
-          <p className="font-semibold text-gray-500 mb-8 text-sm">
-            What were your company’s total expenses?
-          </p>
+    <div className="pb-10 lg:flex gap-5">
+      <div className="shadow-xl border rounded-3xl bg-white">
+        <div className="p-5">
+          <h1 className="font-bold text-3xl">Scope 3</h1>
+          <p className="mt-4"></p>
 
-          <div className="flex justify-between">
-            <label className="font-bold">Business Travel</label>
-            <label>Total: {scope3["Business Travel"]}</label>
-          </div>
+          <hr className="mt-5 mb-5" />
 
-          <div className="flex justify-between items-baseline mt-2">
-            <label className="w-full">Train</label>
+          <div>
+            <h1 className="font-bold mb-5">Travel</h1>
+
+            <div className="grid grid-cols-2 gap-5">
+              <div>
+                <label>1. Flights</label>
+                <input
+                  value={scope3["1"]}
+                  onChange={(e) => setScope3({ ...scope3, 1: e.target.value })}
+                  type="number"
+                  className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+                />
+              </div>
+
+              <div>
+                <label>1.2 Rental cars</label>
+                <input
+                  value={scope3["1.2"]}
+                  onChange={(e) =>
+                    setScope3({ ...scope3, 1.2: e.target.value })
+                  }
+                  type="number"
+                  className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+                />
+              </div>
+
+              <div>
+                <label>1.3 Trains</label>
+                <input
+                  value={scope3["1.3"]}
+                  onChange={(e) =>
+                    setScope3({ ...scope3, 1.3: e.target.value })
+                  }
+                  type="number"
+                  className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+                />
+              </div>
+
+              <div className="mb-5">
+                <label>1.4 Buses</label>
+                <input
+                  value={scope3["1.4"]}
+                  onChange={(e) =>
+                    setScope3({ ...scope3, 1.4: e.target.value })
+                  }
+                  type="number"
+                  className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+                />
+              </div>
+            </div>
+
+            <label>1.5 Hotel & Restaurants</label>
             <input
-              className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-2"
-              value={subs.train}
-              onChange={(e) => setSubs({ ...subs, train: e.target.value })}
+              value={scope3["1.5"]}
+              onChange={(e) => setScope3({ ...scope3, 1.5: e.target.value })}
               type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
-          </div>
 
-          <div className="flex justify-between items-baseline">
-            <label className="w-full">Flights</label>
+            <hr className="mt-5 mb-5" />
+
+            <h1 className="font-bold mb-5">Commuting</h1>
+
+            <p className="mb-5">
+              To calculate accurate totals, you will need to survey the
+              commuting habits of your employees. Click here to access a
+              shareable survey.
+            </p>
+
+            <label>2.1 Train travel per week (km)</label>
             <input
-              className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-2"
-              value={subs.Flights}
-              onChange={(e) => setSubs({ ...subs, Flights: e.target.value })}
+              value={scope3["2.1"]}
+              onChange={(e) => setScope3({ ...scope3, 2.1: e.target.value })}
               type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
-          </div>
 
-          <div className="flex justify-between items-baseline">
-            <label className="w-full">Bus</label>
+            <label>2.2 Bus travel per week (km)</label>
             <input
-              className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-2"
-              value={subs.Bus}
-              onChange={(e) => setSubs({ ...subs, Bus: e.target.value })}
+              value={scope3["2.2"]}
+              onChange={(e) => setScope3({ ...scope3, 2.2: e.target.value })}
               type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
-          </div>
 
-          <div className="flex justify-between items-baseline">
-            <label className="w-full">Car Rental</label>
+            <label>2.3 Walking / cycling travel per week (km) </label>
             <input
-              className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-2"
-              value={subs.Car}
-              onChange={(e) => setSubs({ ...subs, Car: e.target.value })}
+              value={scope3["2.3"]}
+              onChange={(e) => setScope3({ ...scope3, 2.3: e.target.value })}
               type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
-          </div>
 
-          <div className="flex justify-between items-baseline">
-            <label className="w-full">Hotel & restaurants</label>
+            <label>2.4 Car travel per week (km)</label>
             <input
-              className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-2"
-              value={subs.hotel}
-              onChange={(e) => setSubs({ ...subs, hotel: e.target.value })}
+              value={scope3["2.4"]}
+              onChange={(e) => setScope3({ ...scope3, 2.4: e.target.value })}
               type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
-          </div>
 
-          <div className="flex justify-between mt-5">
-            <label className="font-bold">Transport / freight</label>
-            <label>Total: {scope3["Transport / freight"]}</label>
-          </div>
-
-          <div className="flex justify-between items-baseline mt-2">
-            <label className="w-full">Road freight</label>
+            <label>2.5 Carpooling travel per week (km)</label>
             <input
-              className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-2"
-              value={subs.Road}
-              onChange={(e) => setSubs({ ...subs, Road: e.target.value })}
+              value={scope3["2.5"]}
+              onChange={(e) => setScope3({ ...scope3, 2.5: e.target.value })}
               type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
-          </div>
 
-          <div className="flex justify-between items-baseline">
-            <label className="w-full">Air freight</label>
+            <hr className="mt-5 mb-5" />
+
+            <h1 className="font-bold mb-5">Freight & Warehousing</h1>
+
+            <label>3.1 Couriers & road freight</label>
             <input
-              className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-2"
-              value={subs.Air}
-              onChange={(e) => setSubs({ ...subs, Air: e.target.value })}
+              value={scope3["3.1"]}
+              onChange={(e) => setScope3({ ...scope3, 3.1: e.target.value })}
               type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
-          </div>
 
-          <div className="flex justify-between items-baseline">
-            <label className="w-full">Sea freight</label>
+            <label>3.2 Air freight</label>
             <input
-              className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-2"
-              value={subs.sea}
-              onChange={(e) => setSubs({ ...subs, sea: e.target.value })}
+              value={scope3["3.2"]}
+              onChange={(e) => setScope3({ ...scope3, 3.2: e.target.value })}
               type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
-          </div>
 
-          <div className="flex justify-between items-baseline">
-            <label className="w-full">Rail freight</label>
+            <label>3.3 Train freight</label>
             <input
-              className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-2"
-              value={subs.rail}
-              onChange={(e) => setSubs({ ...subs, rail: e.target.value })}
+              value={scope3["3.3"]}
+              onChange={(e) => setScope3({ ...scope3, 3.3: e.target.value })}
               type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
-          </div>
 
-          <div className="flex justify-between items-baseline">
-            <label className="w-full">
-              Other transport services (warehousing etc)
+            <label>3.4 Sean freight</label>
+            <input
+              value={scope3["3.4"]}
+              onChange={(e) => setScope3({ ...scope3, 3.4: e.target.value })}
+              type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+            />
+
+            <hr className="mt-5 mb-5" />
+
+            <h1 className="font-bold mb-5">Inventory</h1>
+
+            <label>4.1 Furniture</label>
+            <input
+              value={scope3["4.1"]}
+              onChange={(e) => setScope3({ ...scope3, 4.1: e.target.value })}
+              type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+            />
+
+            <label>4.2 Packaging & paper</label>
+            <input
+              value={scope3["4.2"]}
+              onChange={(e) => setScope3({ ...scope3, 4.2: e.target.value })}
+              type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+            />
+
+            <label>4.3 Textiles</label>
+            <input
+              value={scope3["4.3"]}
+              onChange={(e) => setScope3({ ...scope3, 4.3: e.target.value })}
+              type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+            />
+
+            <label>4.4 Plastics</label>
+            <input
+              value={scope3["4.4"]}
+              onChange={(e) => setScope3({ ...scope3, 4.4: e.target.value })}
+              type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+            />
+
+            <label>4.5 Metals</label>
+            <input
+              value={scope3["4.5"]}
+              onChange={(e) => setScope3({ ...scope3, 4.5: e.target.value })}
+              type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+            />
+
+            <label>4.6 Wood</label>
+            <input
+              value={scope3["4.6"]}
+              onChange={(e) => setScope3({ ...scope3, 4.6: e.target.value })}
+              type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+            />
+
+            <label>4.7 Chemicals</label>
+            <input
+              value={scope3["4.7"]}
+              onChange={(e) => setScope3({ ...scope3, 4.7: e.target.value })}
+              type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+            />
+
+            <label>4.8 Food, drink and other miscellaneous consumables</label>
+            <input
+              value={scope3["4.8"]}
+              onChange={(e) => setScope3({ ...scope3, 4.8: e.target.value })}
+              type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+            />
+
+            <label>4.9 Books & other physical media</label>
+            <input
+              value={scope3["4.9"]}
+              onChange={(e) => setScope3({ ...scope3, 4.9: e.target.value })}
+              type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+            />
+
+            <hr className="mt-5 mb-5" />
+
+            <h1 className="font-bold mb-5">Capital Goods & Expenses</h1>
+
+            <label>5.1 Purchased vehicles</label>
+            <input
+              value={scope3["5.1"]}
+              onChange={(e) => setScope3({ ...scope3, 5.1: e.target.value })}
+              type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+            />
+
+            <label>
+              5.2 Audio visual & communication products (phones, TVs etc)
             </label>
             <input
-              className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-2"
-              value={subs.otherTrans}
-              onChange={(e) => setSubs({ ...subs, otherTrans: e.target.value })}
+              value={scope3["5.2"]}
+              onChange={(e) => setScope3({ ...scope3, 5.2: e.target.value })}
               type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
-          </div>
 
-          <div className="flex justify-between mt-5">
-            <label className="font-bold">Capital goods</label>
-            <label>Total: {scope3["Capital goods"]}</label>
-          </div>
-
-          <div className="flex justify-between items-baseline">
-            <label className="w-full">
-              Phones, TVs and communication equipment
+            <label>
+              5.3 Office hardware (computers, printers, copiers etc)
             </label>
             <input
-              className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-2"
-              value={subs.phones}
-              onChange={(e) => setSubs({ ...subs, phones: e.target.value })}
+              value={scope3["5.3"]}
+              onChange={(e) => setScope3({ ...scope3, 5.3: e.target.value })}
               type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
-          </div>
 
-          <div className="flex justify-between items-baseline">
-            <label className="w-full">Computers and office machinery</label>
+            <label>5.4 Other machinery, tools & equipment</label>
             <input
-              className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-2"
-              value={subs.computers}
-              onChange={(e) => setSubs({ ...subs, computers: e.target.value })}
+              value={scope3["5.4"]}
+              onChange={(e) => setScope3({ ...scope3, 5.4: e.target.value })}
               type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
-          </div>
 
-          <div className="flex justify-between items-baseline">
-            <label className="w-full">Purchased vehicles</label>
-            <input
-              className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-2"
-              value={subs.purchased}
-              onChange={(e) => setSubs({ ...subs, purchased: e.target.value })}
-              type="number"
-            />
-          </div>
+            <hr className="mt-5 mb-5" />
 
-          <div className="flex justify-between items-baseline">
-            <label className="w-full">Other machinery, tools & equipment</label>
+            <h1 className="font-bold mb-5">Services</h1>
+
+            <label>6.1 Legal, accounting & consultancy services</label>
             <input
-              className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-2"
-              value={subs.otherMachinery}
-              onChange={(e) =>
-                setSubs({ ...subs, otherMachinery: e.target.value })
-              }
+              value={scope3["6.1"]}
+              onChange={(e) => setScope3({ ...scope3, 6.1: e.target.value })}
               type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
+
+            <label>
+              6.2 IT Services (includes software, subscriptions, cloud
+              computing, IT outsourcing etc)
+            </label>
+            <input
+              value={scope3["6.2"]}
+              onChange={(e) => setScope3({ ...scope3, 6.2: e.target.value })}
+              type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+            />
+
+            <label>6.3 Insurance, Superannuation & pensions</label>
+            <input
+              value={scope3["6.3"]}
+              onChange={(e) => setScope3({ ...scope3, 6.3: e.target.value })}
+              type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+            />
+
+            <label>6.4 Banking fees etc</label>
+            <input
+              value={scope3["6.4"]}
+              onChange={(e) => setScope3({ ...scope3, 6.4: e.target.value })}
+              type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+            />
+
+            <label>6.5 Construction & renovation services</label>
+            <input
+              value={scope3["6.5"]}
+              onChange={(e) => setScope3({ ...scope3, 6.5: e.target.value })}
+              type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+            />
+
+            <hr className="mt-5 mb-5" />
+
+            <h1 className="font-bold mb-5">Waste Removal</h1>
+
+            <label>
+              7.1 How many employees attend the office at least one day per
+              week?
+            </label>
+            <input
+              value={scope3["7.1"]}
+              onChange={(e) => setScope3({ ...scope3, 7.1: e.target.value })}
+              type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+            />
+
+            <label>
+              7.2 How many days a week are your staff in the office on average?
+            </label>
+
+            <p className="text-xs font-semibold text-gray-400">
+              You should have this data via the inputs from the commuting survey
+            </p>
+
+            <input
+              value={scope3["7.2"]}
+              onChange={(e) => setScope3({ ...scope3, 7.2: e.target.value })}
+              type="number"
+              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+            />
+
+            <label>7.3 How green is your office?</label>
+
+            <div className="mt-3">
+              <Select
+                value={scope3["7.3"]}
+                set={(e) => setScope3({ ...scope3, 7.3: e })}
+                people={[
+                  "Strictly paperless",
+                  "Moderately paperless",
+                  "No paperless policy",
+                  "Strict recycling",
+                  "Moderate recycling",
+                  "No recycling",
+                ]}
+              />
+            </div>
           </div>
         </div>
 
-        <div className="md:pl-2 xl:px-2">
-          <div className="flex justify-between mt-5">
-            <label className="font-bold">Materials & inventory</label>
-            <label>Total: {scope3["Materials & inventory"]}</label>
-          </div>
-
-          <div className="flex justify-between items-baseline mt-2">
-            <label className="w-full">Furniture</label>
-            <input
-              className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-2"
-              value={subs.Furniture}
-              onChange={(e) => setSubs({ ...subs, Furniture: e.target.value })}
-              type="number"
-            />
-          </div>
-
-          <div className="flex justify-between items-baseline">
-            <label className="w-full">Paper & packaging</label>
-            <input
-              className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-2"
-              value={subs.paper}
-              onChange={(e) => setSubs({ ...subs, paper: e.target.value })}
-              type="number"
-            />
-          </div>
-
-          <div className="flex justify-between items-baseline">
-            <label className="w-full">Textiles</label>
-            <input
-              className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-2"
-              value={subs.Textiles}
-              onChange={(e) => setSubs({ ...subs, Textiles: e.target.value })}
-              type="number"
-            />
-          </div>
-
-          <div className="flex justify-between items-baseline">
-            <label className="w-full">Plastic products</label>
-            <input
-              className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-2"
-              value={subs.plastic}
-              onChange={(e) => setSubs({ ...subs, plastic: e.target.value })}
-              type="number"
-            />
-          </div>
-
-          <div className="flex justify-between items-baseline">
-            <label className="w-full">Metal products</label>
-            <input
-              className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-2"
-              value={subs.metal}
-              onChange={(e) => setSubs({ ...subs, metal: e.target.value })}
-              type="number"
-            />
-          </div>
-
-          <div className="flex justify-between items-baseline">
-            <label className="w-full">Chemicals and pharmaceuticals</label>
-            <input
-              className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-2"
-              value={subs.chemicals}
-              onChange={(e) => setSubs({ ...subs, chemicals: e.target.value })}
-              type="number"
-            />
-          </div>
-
-          <div className="flex justify-between items-baseline">
-            <label className="w-full">
-              Other general products eg food miscellaneous inventory
-            </label>
-            <input
-              className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-2"
-              value={subs.otherFood}
-              onChange={(e) => setSubs({ ...subs, otherFood: e.target.value })}
-              type="number"
-            />
-          </div>
-
-          <div className="flex justify-between items-baseline">
-            <label className="w-full">
-              Books, movies & related items (physical media)
-            </label>
-            <input
-              className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-2"
-              value={subs.book}
-              onChange={(e) => setSubs({ ...subs, book: e.target.value })}
-              type="number"
-            />
-          </div>
-
-          <div className="flex justify-between mt-5">
-            <label className="font-bold">Services</label>
-            <label>Total: {scope3["Services"]}</label>
-          </div>
-
-          <div className="flex justify-between items-baseline mt-2">
-            <label className="w-full">
-              Legal, accounting & management consultancy
-            </label>
-            <input
-              className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-2"
-              value={subs.legal}
-              onChange={(e) => setSubs({ ...subs, legal: e.target.value })}
-              type="number"
-            />
-          </div>
-
-          <div className="flex justify-between items-baseline">
-            <label className="w-full">
-              Software, hosting, programming, IT services Example: IT
-              consultants, outsourced programming, Subscriptions, data hosting
-              services, softwares, digital advertising
-            </label>
-            <input
-              className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-2"
-              value={subs.software}
-              onChange={(e) => setSubs({ ...subs, software: e.target.value })}
-              type="number"
-            />
-          </div>
-
-          <div className="flex justify-between items-baseline">
-            <label className="w-full">Insurance and pension funding</label>
-            <input
-              className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-2"
-              value={subs.insurance}
-              onChange={(e) => setSubs({ ...subs, insurance: e.target.value })}
-              type="number"
-            />
-          </div>
-
-          <div className="flex justify-between items-baseline">
-            <label className="w-full">
-              Financial intermediation (eg banking charges)
-            </label>
-            <input
-              className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-2"
-              value={subs.financial}
-              onChange={(e) => setSubs({ ...subs, financial: e.target.value })}
-              type="number"
-            />
-          </div>
-
-          <div className="flex justify-between items-baseline">
-            <label className="w-full">
-              Construction and maintenance,Example: Construction projects,
-              maintenance or renovations
-            </label>
-            <input
-              className="border-b border-[#2dbf1d] w-full py-2 pl-3 outline-none mb-2"
-              value={subs.construction}
-              onChange={(e) =>
-                setSubs({ ...subs, construction: e.target.value })
-              }
-              type="number"
-            />
-          </div>
+        <div className="bg-[#E5FAE6] rounded-b-3xl p-6 flex justify-end pr-16">
+          <button
+            onClick={saveScope3}
+            className="bg-[#2dbf1d] px-6 p-1 rounded-lg font-bold text-white"
+          >
+            Save
+          </button>
         </div>
       </div>
 
-      <div className="flex justify-center pb-5 pt-5">
-        <button className="font-bold text-xl hover:bg-green-700 w-[80%] text-white rounded-full shadow bg-[#2dbf1d] md:w-[50%] xl:w-[35%] p-2">
-          SAVE <i class="fas fa-chevron-right"></i>
-        </button>
+      <div className="shadow-xl border rounded-3xl mt-10 lg:mt-0 bg-white">
+        <h1 className="text-center mt-10 font-bold text-3xl"></h1>
+
+        <div className="p-10 flex-wrap justify-center lg:grid sm:flex grid pt-5 gap-5 lg:gap-10">
+          <div className="flex items-center gap-3">
+            <i class="fas fa-passport text-4xl text-[#005504]"></i>
+            <div>
+              <h1 className="font-bold text-xl">TRAVEL</h1>
+              <p className="font-semibold text-[#005504] text-lg">
+                {calculateTravel()}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <i class="fas fa-car-side text-4xl text-[#005504]"></i>
+            <div>
+              <h1 className="font-bold text-xl">COMMUTING</h1>
+              <p className="font-semibold text-[#005504] text-lg">
+                {calculateCommuting()}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <i class="fas fa-pallet text-4xl text-[#005504]"></i>
+            <div>
+              <h1 className="font-bold text-xl">FREIGHT & WAREHOUSING</h1>
+              <p className="font-semibold text-[#005504] text-lg">
+                {calculateFreight()}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <i class="fas fa-boxes text-4xl text-[#005504]"></i>
+            <div>
+              <h1 className="font-bold text-xl">INVENTORY</h1>
+              <p className="font-semibold text-[#005504] text-lg">
+                {calculateInventory()}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <i class="fas fa-tools text-4xl text-[#005504]"></i>
+            <div>
+              <h1 className="font-bold text-xl">CAPITAL GOODS & EXPENSES</h1>
+              <p className="font-semibold text-[#005504] text-lg">
+                {calculateCapital()}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <i class="fas fa-file-contract text-4xl text-[#005504]"></i>
+            <div>
+              <h1 className="font-bold text-xl">SERVICES</h1>
+              <p className="font-semibold text-[#005504] text-lg">
+                {calculateServices()}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

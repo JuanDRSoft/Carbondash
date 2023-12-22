@@ -49,11 +49,47 @@ const AuthProvider = ({ children }) => {
   });
 
   const [scope3, setScope3] = useState({
-    "Business Travel": 0,
-    "Transport / freight": 0,
-    "Materials & inventory": 0,
-    "Capital goods": 0,
-    Services: 0,
+    1: 0,
+    1.2: 0,
+    1.3: 0,
+    1.4: 0,
+    1.5: 0,
+
+    2.1: 0,
+    2.2: 0,
+    2.3: 0,
+    2.4: 0,
+    2.5: 0,
+
+    3.1: 0,
+    3.2: 0,
+    3.3: 0,
+    3.4: 0,
+
+    4.1: 0,
+    4.2: 0,
+    4.3: 0,
+    4.4: 0,
+    4.5: 0,
+    4.6: 0,
+    4.7: 0,
+    4.8: 0,
+    4.9: 0,
+
+    5.1: 0,
+    5.2: 0,
+    5.3: 0,
+    5.4: 0,
+
+    6.1: 0,
+    6.2: 0,
+    6.3: 0,
+    6.4: 0,
+    6.5: 0,
+
+    7.1: 0,
+    7.2: 0,
+    7.3: "",
   });
 
   const navigate = useNavigate();
@@ -250,6 +286,94 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  const saveScope3 = async () => {
+    if (!auth.token) {
+      toast.error("Register or log in to submit a response");
+      return;
+    }
+
+    const lastId = localStorage.getItem("lastId");
+
+    if (!lastId) {
+      toast.error("Fill out the scope 1 form first");
+      return;
+    }
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${ApiKey}`,
+      },
+    };
+
+    const bodyData = {
+      fields: {
+        "1. Flights": Number(scope3[1]),
+        "1.2 Rental cars": Number(scope3["1.2"]),
+        "1.3 Trains": Number(scope3["1.3"]),
+        "1.4 Buses": Number(scope3["1.4"]),
+        "1.5 Hotel & Restaurants": Number(scope3["1.5"]),
+
+        "2.1 Train travel per week (km)": Number(scope3["2.1"]),
+        "2.2 Bus travel per week (km)": Number(scope3["2.2"]),
+        "2.3 Walking / cycling travel per week (km)": Number(scope3["2.3"]),
+        "2.4 Car travel per week (km)": Number(scope3["2.4"]),
+        "2.5 Carpooling travel per week (km)": Number(scope3["2.5"]),
+
+        "3.1 Couriers & road freight": Number(scope3["3.1"]),
+        "3.2 Air freight": Number(scope3["3.2"]),
+        "3.3 Train freight": Number(scope3["3.3"]),
+        "3.4 Sean freight": Number(scope3["3.4"]),
+
+        "4.1 Furniture": Number(scope3["4.1"]),
+        "4.2 Packaging & paper": Number(scope3["4.2"]),
+        "4.3 Textiles": Number(scope3["4.3"]),
+        "4.4 Plastics": Number(scope3["4.4"]),
+        "4.5 Metals": Number(scope3["4.5"]),
+        "4.6 Wood": Number(scope3["4.6"]),
+        "4.7 Chemicals": Number(scope3["4.7"]),
+        "4.8 Food, drink and other miscellaneous consumables": Number(
+          scope3["4.8"]
+        ),
+        "4.9 Books & other physical media": Number(scope3["4.9"]),
+
+        "5.1 Purchased vehicles": Number(scope3["5.1"]),
+        "5.2 Audio visual & communication products (phones, TVs etc)": Number(
+          scope3["5.2"]
+        ),
+        "5.3 Office hardware (computers, printers, copiers etc)": Number(
+          scope3["5.3"]
+        ),
+        "5.4 Other machinery, tools & equipment": Number(scope3["5.4"]),
+
+        "6.1 Legal, accounting & consultancy services": Number(scope3["6.1"]),
+        " 6.2 IT Services (includes software, subscriptions, cloud computing, IT outsourcing etc)":
+          Number(scope3["6.2"]),
+        "6.3 Insurance, Superannuation & pensions": Number(scope3["6.3"]),
+        "6.4 Banking fees etc": Number(scope3["6.4"]),
+        "6.5 Construction & renovation services": Number(scope3["6.5"]),
+
+        "7.1 How many employees attend the office at least one day per week?":
+          Number(scope3["7.1"]),
+        "7.2 How many days a week are your staff in the office on average?":
+          Number(scope3["7.2"]),
+        "7.3 How green is your office?": scope3["7.3"],
+      },
+    };
+
+    try {
+      const data = await axios.patch(
+        `${baseUrl}/appJCp1Y4OgnXBC9C/Customer%20Answers/${lastId}`,
+        bodyData,
+        config
+      );
+
+      toast.success("Scope 3 Saved Successfully");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -265,6 +389,7 @@ const AuthProvider = ({ children }) => {
         setScope3,
         saveScope1,
         saveScope2,
+        saveScope3,
       }}
     >
       {children}
