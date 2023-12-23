@@ -1,38 +1,56 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Select from "../components/Select";
 import useAuth from "../hooks/useAuth";
 
 const Scope2 = () => {
   const { scope2, setScope2, saveScope2 } = useAuth();
   const [progress, setProgress] = useState(0);
+  const [kwh, setkwh] = useState(0);
+  const [spend, setSpend] = useState(0);
+  const [emission, setEmission] = useState(0);
+
+  useEffect(() => {
+    if (scope2[3] > 0) {
+      setkwh(Number(scope2[3]) * emission);
+    } else if (scope2["3.1"] > 0) {
+      setSpend(Number(scope2["3.1"]) * emission);
+    }
+
+    if (scope2["2.1"]) {
+      switch (scope2["2.1"]) {
+        case "NSW":
+          setEmission(0.68);
+          break;
+        case "VIC":
+          setEmission(0.79);
+          break;
+        case "QLD":
+          setEmission(0.73);
+          break;
+        case "ACT":
+          setEmission(0.68);
+          break;
+        case "TAS":
+          setEmission(0.12);
+          break;
+        case "SA":
+          setEmission(0.25);
+          break;
+        case "NT":
+          setEmission(0.54);
+          break;
+        case "WA":
+          setEmission(0.62);
+          break;
+      }
+    }
+  }, [scope2]);
 
   const calculateElectricity = () => {
     if (scope2["2.1"]) {
-      let emission = 0;
-
-      switch (scope2["2.1"]) {
-        case "NSW":
-          emission = 0.68;
-        case "VIC":
-          emission = 0.79;
-        case "QLD":
-          emission = 0.73;
-        case "ACT":
-          emission = 0.68;
-        case "TAS":
-          emission = 0.12;
-        case "SA":
-          emission = 0.25;
-        case "NT":
-          emission = 0.54;
-        case "WA":
-          emission = 0.62;
-          break;
-      }
-
       const calc = (Number(scope2[3]) + Number(scope2["3.1"])) * emission;
 
-      return calc;
+      return calc.toFixed(2);
     } else {
       return 0;
     }
@@ -231,7 +249,7 @@ const Scope2 = () => {
 
         <div className="bg-[#E5FAE6] rounded-b-3xl p-6 flex justify-end pr-16">
           <button
-            onClick={saveScope2}
+            onClick={() => saveScope2(kwh, spend)}
             className="bg-[#2dbf1d] px-6 p-1 rounded-lg font-bold text-white"
           >
             Save

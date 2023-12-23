@@ -11,6 +11,16 @@ const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({});
   const [cargando, setCargando] = useState(true);
   const [EF, setEF] = useState([]);
+  const [scope1Report, setScope1Report] = useState({
+    vehicles: 0,
+    machinery: 0,
+    refrigerant: 0,
+  });
+  const [scope2Report, setScope2Report] = useState({
+    kwh: 0,
+    "spend on electricity": 0,
+  });
+  const [scope3Report, setScope3Report] = useState({});
 
   const [scope1, setScope1] = useState({
     name: "",
@@ -130,7 +140,7 @@ const AuthProvider = ({ children }) => {
       }
     };
 
-    const getEF = async () => {
+    const getScope1 = async () => {
       const config = {
         headers: {
           "Content-Type": "application/json",
@@ -140,20 +150,59 @@ const AuthProvider = ({ children }) => {
 
       try {
         const { data } = await axios.get(
-          `${baseUrl}/appJCp1Y4OgnXBC9C/AU%20EF%20Lookup%20Table`,
+          `${baseUrl}/appJCp1Y4OgnXBC9C/Reports/recoCyA3wFRFWbw8i`,
           config
         );
 
-        setEF(data.records);
+        setScope1Report(data.fields);
       } catch (error) {
         console.log(error);
-        setAuth({});
-      } finally {
-        setCargando(false);
       }
     };
 
-    getEF();
+    const getScope2 = async () => {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${ApiKey}`,
+        },
+      };
+
+      try {
+        const { data } = await axios.get(
+          `${baseUrl}/appJCp1Y4OgnXBC9C/Reports/rec4JE07Ns1dg80lV`,
+          config
+        );
+
+        setScope2Report(data.fields);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const getScope3 = async () => {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${ApiKey}`,
+        },
+      };
+
+      try {
+        const { data } = await axios.get(
+          `${baseUrl}/appJCp1Y4OgnXBC9C/Reports/rechRbElJ3m82lawO`,
+          config
+        );
+
+        setScope3Report(data.fields);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getScope1();
+    getScope2();
+    getScope3();
     autenticarAdmin();
   }, []);
 
@@ -163,7 +212,7 @@ const AuthProvider = ({ children }) => {
     toast.success("Logged out successfully");
   };
 
-  const saveScope1 = async () => {
+  const saveScope1 = async (vehicles, machinery, refrigerant) => {
     if (!auth.token) {
       toast.error("Register or log in to submit a response");
       return;
@@ -215,12 +264,28 @@ const AuthProvider = ({ children }) => {
       },
     };
 
+    const bodyReport = {
+      fields: {
+        vehicles: Number(vehicles) + Number(scope1Report.vehicles),
+        machinery: Number(machinery) + Number(scope1Report.vehicles),
+        refrigerant: Number(refrigerant) + Number(scope1Report.vehicles),
+      },
+    };
+
     try {
       const { data } = await axios.post(
         `${baseUrl}/appJCp1Y4OgnXBC9C/Customer%20Answers`,
         bodyData,
         config
       );
+
+      const { report } = await axios.patch(
+        `${baseUrl}/appJCp1Y4OgnXBC9C/Reports/recoCyA3wFRFWbw8i`,
+        bodyReport,
+        config
+      );
+
+      setScope1Report(report.fields);
 
       localStorage.setItem("lastId", data.id);
 
@@ -231,7 +296,7 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const saveScope2 = async () => {
+  const saveScope2 = async (kwh, spend) => {
     if (!auth.token) {
       toast.error("Register or log in to submit a response");
       return;
@@ -265,11 +330,19 @@ const AuthProvider = ({ children }) => {
         "4.1 How many lightbulbs are in your business premises?": Number(
           scope2["4.1"]
         ),
-        "5. Is your business located in a small or large building?": scope2[5],
+        "5.1 Is your business located in a small or large building?": scope2[5],
         "5.1 Is it a single or multi tenant building?": scope2["5.1"],
         "5.2 How's the weather? Is it generally sunny where you are? Are there any trees obstructing the roof?":
           scope2["5.2"],
         "5.3 What is your address?": scope2["5.3"],
+      },
+    };
+
+    const bodyReport = {
+      fields: {
+        kwh: Number(kwh) + Number(scope2Report.kwh),
+        "spend on electricity":
+          Number(spend) + Number(scope2Report["spend on electricity"]),
       },
     };
 
@@ -280,13 +353,28 @@ const AuthProvider = ({ children }) => {
         config
       );
 
+      const { report } = await axios.patch(
+        `${baseUrl}/appJCp1Y4OgnXBC9C/Reports/rec4JE07Ns1dg80lV`,
+        bodyReport,
+        config
+      );
+
+      setScope2Report(report.fields);
+
       toast.success("Scope 2 Saved Successfully");
     } catch (error) {
       console.log(error);
     }
   };
 
-  const saveScope3 = async () => {
+  const saveScope3 = async (
+    travel,
+    commuting,
+    freight,
+    inventory,
+    capital,
+    services
+  ) => {
     if (!auth.token) {
       toast.error("Register or log in to submit a response");
       return;
@@ -361,12 +449,33 @@ const AuthProvider = ({ children }) => {
       },
     };
 
+    const bodyReport = {
+      fields: {
+        TRAVEL: Number(travel) + Number(scope3Report.TRAVEL),
+        COMMUTING: Number(commuting) + Number(scope3Report.COMMUTING),
+        "FREIGHT & WAREHOUSING":
+          Number(freight) + Number(scope3Report["FREIGHT & WAREHOUSING"]),
+        INVENTORY: Number(inventory) + Number(scope3Report.INVENTORY),
+        "CAPITAL GOODS & EXPENSES":
+          Number(capital) + Number(scope3Report["CAPITAL GOODS & EXPENSES"]),
+        SERVICES: Number(services) + Number(scope3Report.SERVICES),
+      },
+    };
+
     try {
       const data = await axios.patch(
         `${baseUrl}/appJCp1Y4OgnXBC9C/Customer%20Answers/${lastId}`,
         bodyData,
         config
       );
+
+      const { report } = await axios.patch(
+        `${baseUrl}/appJCp1Y4OgnXBC9C/Reports/rechRbElJ3m82lawO`,
+        bodyReport,
+        config
+      );
+
+      setScope3Report(report.fields);
 
       toast.success("Scope 3 Saved Successfully");
     } catch (error) {
@@ -390,6 +499,9 @@ const AuthProvider = ({ children }) => {
         saveScope1,
         saveScope2,
         saveScope3,
+        scope1Report,
+        scope2Report,
+        scope3Report,
       }}
     >
       {children}

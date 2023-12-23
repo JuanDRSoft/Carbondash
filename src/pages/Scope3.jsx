@@ -442,7 +442,16 @@ const Scope3 = () => {
 
         <div className="bg-[#E5FAE6] rounded-b-3xl p-6 flex justify-end pr-16">
           <button
-            onClick={saveScope3}
+            onClick={() =>
+              saveScope3(
+                calculateTravel(),
+                calculateCommuting(),
+                calculateFreight(),
+                calculateInventory(),
+                calculateCapital(),
+                calculateServices()
+              )
+            }
             className="bg-[#2dbf1d] px-6 p-1 rounded-lg font-bold text-white"
           >
             Save

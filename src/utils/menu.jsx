@@ -14,6 +14,21 @@ export const menu = [
     link: "/reports",
   },
   {
+    key: "reduce",
+    title: "Reduce",
+    link: "/reduce",
+  },
+  {
+    key: "offset",
+    title: "Offset",
+    link: "/offset",
+  },
+  {
+    key: "cost",
+    title: "Cost Savings",
+    link: "/cost-savings",
+  },
+  {
     key: "login",
     title: "Login",
     link: "/login",
