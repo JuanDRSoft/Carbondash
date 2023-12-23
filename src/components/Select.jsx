@@ -12,7 +12,7 @@ const Select = ({ value, set, people }) => {
       <Listbox value={value || selected} onChange={(e) => set(e)}>
         <div className="relative mt-4 mb-5 ">
           <Listbox.Button className="relative w-full outline-[#2dbf1d]  focus:outline outline-2 bg-white py-2 pl-3 pr-10 text-left border rounded-lg sm:text-sm">
-            <span className="truncate bg-purple-300 rounded-full px-2">
+            <span className="truncate bg-[#E5FAE6] rounded-full px-2">
               {value || selected.name}
             </span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">

@@ -58,7 +58,7 @@ const Scope2 = () => {
 
   return (
     <div className="pb-10 lg:flex gap-5">
-      <div className="shadow-xl rounded-3xl bg-white">
+      <div className="shadow-xl rounded-3xl bg-white border">
         <div className="p-5">
           <h1 className="font-bold text-3xl">Scope 2</h1>
           <p className="mt-4">
@@ -74,6 +74,7 @@ const Scope2 = () => {
 
           <label>
             1. How many locations / premises does your company own or lease?
+            <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
           </label>
 
           <div className="mt-3">
@@ -92,7 +93,10 @@ const Scope2 = () => {
             />
           </div>
 
-          <label>2. What country are your business premises located in?</label>
+          <label>
+            2. What country are your business premises located in?
+            <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+          </label>
 
           <div className="mt-3">
             <Select
@@ -123,6 +127,7 @@ const Scope2 = () => {
             <>
               <label>
                 2.1 (Australia) What region or state are you located in?
+                <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
               </label>
 
               <div className="mt-3">
@@ -140,6 +145,7 @@ const Scope2 = () => {
               <label>
                 3. How many kilowatt hours (kwh) of electricity did your
                 business consume?
+                <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
               </label>
               <p className="text-xs font-semibold text-gray-400">
                 If you're unsure, leave this blank and answer question 3.1
@@ -155,7 +161,10 @@ const Scope2 = () => {
             </div>
 
             <div>
-              <label>3.1 How much did you spend on electricity?</label>
+              <label>
+                3.1 How much did you spend on electricity?
+                <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+              </label>
               <p className="text-xs font-semibold text-gray-400">
                 Leave this blank if you answered question 3
               </p>
@@ -169,7 +178,10 @@ const Scope2 = () => {
             </div>
           </div>
 
-          <label>4. Do you use LED lighting in your business premises?</label>
+          <label>
+            4. Do you use LED lighting in your business premises?
+            <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+          </label>
 
           <div className="mt-3">
             <Select
@@ -183,6 +195,7 @@ const Scope2 = () => {
             <>
               <label>
                 4.1 How many lightbulbs are in your business premises?
+                <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
               </label>
 
               <input
@@ -196,6 +209,7 @@ const Scope2 = () => {
 
           <label>
             5. Is your business located in a small or large building?
+            <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
           </label>
 
           <div className="mt-3">
@@ -208,7 +222,10 @@ const Scope2 = () => {
 
           {scope2["5"].includes("Small") && (
             <>
-              <label>5.1 Is it a single or multi tenant building?</label>
+              <label>
+                5.1 Is it a single or multi tenant building?
+                <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+              </label>
 
               <div className="mt-3">
                 <Select
@@ -223,6 +240,7 @@ const Scope2 = () => {
           <label>
             5.2 How's the weather? Is it generally sunny where you are? Are
             there any trees obstructing the roof?
+            <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
           </label>
 
           <div className="mt-3">
@@ -237,7 +255,10 @@ const Scope2 = () => {
             />
           </div>
 
-          <label>5.3 What is your address?</label>
+          <label>
+            5.3 What is your address?
+            <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+          </label>
 
           <input
             value={scope2["5.3"]}
@@ -257,15 +278,22 @@ const Scope2 = () => {
         </div>
       </div>
 
-      <div className="shadow-xl border rounded-3xl mt-10 lg:mt-0 bg-white p-10">
-        <div className="flex items-center gap-3 justify-center">
-          <i class="fas fa-plug text-4xl text-[#005504]"></i>
+      <div className="shadow-xl border rounded-3xl mt-10 lg:mt-0 bg-white">
+        <div className="flex items-center gap-3 justify-center p-10">
+          <i class="fas fa-plug text-4xl text-[#2dbf1d]"></i>
           <div>
             <h1 className="font-bold text-xl">ELECTRICITY</h1>
             <p className="font-semibold text-[#005504] text-lg">
               {calculateElectricity()}
             </p>
           </div>
+        </div>
+
+        <div className="bg-[#E5FAE6] rounded-b-3xl p-6">
+          <h1 className="text-xl uppercase text-center font-bold">Total</h1>
+          <p className="text-center font-semibold text-[#005504] text-lg">
+            {calculateElectricity().toFixed(2)}
+          </p>
         </div>
       </div>
     </div>

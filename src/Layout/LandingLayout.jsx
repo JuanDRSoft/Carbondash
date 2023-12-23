@@ -186,7 +186,7 @@ const LandingLayout = () => {
       location.pathname !== "/reduce" &&
       location.pathname !== "/offset" &&
       location.pathname !== "/cost-savings" ? (
-        <div className="pt-36 xl:px-36 md:px-24 px-10">
+        <div className="pt-36 xl:px-24 md:px-10 md:pr-[28%] pr-10 px-10  2xl:pr-[18%] xl:pr-[28%]">
           <Outlet />
         </div>
       ) : (

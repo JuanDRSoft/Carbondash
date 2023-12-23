@@ -88,7 +88,10 @@ const Scope3 = () => {
 
             <div className="grid grid-cols-2 gap-5">
               <div>
-                <label>1. Flights</label>
+                <label>
+                  1. Flights
+                  <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+                </label>
                 <input
                   value={scope3["1"]}
                   onChange={(e) => setScope3({ ...scope3, 1: e.target.value })}
@@ -98,7 +101,10 @@ const Scope3 = () => {
               </div>
 
               <div>
-                <label>1.2 Rental cars</label>
+                <label>
+                  1.2 Rental cars
+                  <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+                </label>
                 <input
                   value={scope3["1.2"]}
                   onChange={(e) =>
@@ -110,7 +116,10 @@ const Scope3 = () => {
               </div>
 
               <div>
-                <label>1.3 Trains</label>
+                <label>
+                  1.3 Trains
+                  <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+                </label>
                 <input
                   value={scope3["1.3"]}
                   onChange={(e) =>
@@ -122,7 +131,10 @@ const Scope3 = () => {
               </div>
 
               <div className="mb-5">
-                <label>1.4 Buses</label>
+                <label>
+                  1.4 Buses
+                  <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+                </label>
                 <input
                   value={scope3["1.4"]}
                   onChange={(e) =>
@@ -134,7 +146,10 @@ const Scope3 = () => {
               </div>
             </div>
 
-            <label>1.5 Hotel & Restaurants</label>
+            <label>
+              1.5 Hotel & Restaurants
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+            </label>
             <input
               value={scope3["1.5"]}
               onChange={(e) => setScope3({ ...scope3, 1.5: e.target.value })}
@@ -152,7 +167,10 @@ const Scope3 = () => {
               shareable survey.
             </p>
 
-            <label>2.1 Train travel per week (km)</label>
+            <label>
+              2.1 Train travel per week (km)
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+            </label>
             <input
               value={scope3["2.1"]}
               onChange={(e) => setScope3({ ...scope3, 2.1: e.target.value })}
@@ -160,7 +178,10 @@ const Scope3 = () => {
               className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
-            <label>2.2 Bus travel per week (km)</label>
+            <label>
+              2.2 Bus travel per week (km)
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+            </label>
             <input
               value={scope3["2.2"]}
               onChange={(e) => setScope3({ ...scope3, 2.2: e.target.value })}
@@ -168,7 +189,10 @@ const Scope3 = () => {
               className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
-            <label>2.3 Walking / cycling travel per week (km) </label>
+            <label>
+              2.3 Walking / cycling travel per week (km)
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+            </label>
             <input
               value={scope3["2.3"]}
               onChange={(e) => setScope3({ ...scope3, 2.3: e.target.value })}
@@ -176,7 +200,10 @@ const Scope3 = () => {
               className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
-            <label>2.4 Car travel per week (km)</label>
+            <label>
+              2.4 Car travel per week (km)
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+            </label>
             <input
               value={scope3["2.4"]}
               onChange={(e) => setScope3({ ...scope3, 2.4: e.target.value })}
@@ -184,7 +211,10 @@ const Scope3 = () => {
               className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
-            <label>2.5 Carpooling travel per week (km)</label>
+            <label>
+              2.5 Carpooling travel per week (km)
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+            </label>
             <input
               value={scope3["2.5"]}
               onChange={(e) => setScope3({ ...scope3, 2.5: e.target.value })}
@@ -196,7 +226,10 @@ const Scope3 = () => {
 
             <h1 className="font-bold mb-5">Freight & Warehousing</h1>
 
-            <label>3.1 Couriers & road freight</label>
+            <label>
+              3.1 Couriers & road freight
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+            </label>
             <input
               value={scope3["3.1"]}
               onChange={(e) => setScope3({ ...scope3, 3.1: e.target.value })}
@@ -204,7 +237,10 @@ const Scope3 = () => {
               className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
-            <label>3.2 Air freight</label>
+            <label>
+              3.2 Air freight
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+            </label>
             <input
               value={scope3["3.2"]}
               onChange={(e) => setScope3({ ...scope3, 3.2: e.target.value })}
@@ -212,7 +248,10 @@ const Scope3 = () => {
               className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
-            <label>3.3 Train freight</label>
+            <label>
+              3.3 Train freight
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+            </label>
             <input
               value={scope3["3.3"]}
               onChange={(e) => setScope3({ ...scope3, 3.3: e.target.value })}
@@ -220,7 +259,10 @@ const Scope3 = () => {
               className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
-            <label>3.4 Sean freight</label>
+            <label>
+              3.4 Sean freight
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+            </label>
             <input
               value={scope3["3.4"]}
               onChange={(e) => setScope3({ ...scope3, 3.4: e.target.value })}
@@ -232,7 +274,10 @@ const Scope3 = () => {
 
             <h1 className="font-bold mb-5">Inventory</h1>
 
-            <label>4.1 Furniture</label>
+            <label>
+              4.1 Furniture
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+            </label>
             <input
               value={scope3["4.1"]}
               onChange={(e) => setScope3({ ...scope3, 4.1: e.target.value })}
@@ -240,7 +285,10 @@ const Scope3 = () => {
               className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
-            <label>4.2 Packaging & paper</label>
+            <label>
+              4.2 Packaging & paper
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+            </label>
             <input
               value={scope3["4.2"]}
               onChange={(e) => setScope3({ ...scope3, 4.2: e.target.value })}
@@ -248,7 +296,10 @@ const Scope3 = () => {
               className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
-            <label>4.3 Textiles</label>
+            <label>
+              4.3 Textiles
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+            </label>
             <input
               value={scope3["4.3"]}
               onChange={(e) => setScope3({ ...scope3, 4.3: e.target.value })}
@@ -256,7 +307,10 @@ const Scope3 = () => {
               className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
-            <label>4.4 Plastics</label>
+            <label>
+              4.4 Plastics
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+            </label>
             <input
               value={scope3["4.4"]}
               onChange={(e) => setScope3({ ...scope3, 4.4: e.target.value })}
@@ -264,7 +318,10 @@ const Scope3 = () => {
               className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
-            <label>4.5 Metals</label>
+            <label>
+              4.5 Metals
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+            </label>
             <input
               value={scope3["4.5"]}
               onChange={(e) => setScope3({ ...scope3, 4.5: e.target.value })}
@@ -272,7 +329,10 @@ const Scope3 = () => {
               className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
-            <label>4.6 Wood</label>
+            <label>
+              4.6 Wood
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+            </label>
             <input
               value={scope3["4.6"]}
               onChange={(e) => setScope3({ ...scope3, 4.6: e.target.value })}
@@ -280,7 +340,10 @@ const Scope3 = () => {
               className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
-            <label>4.7 Chemicals</label>
+            <label>
+              4.7 Chemicals
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+            </label>
             <input
               value={scope3["4.7"]}
               onChange={(e) => setScope3({ ...scope3, 4.7: e.target.value })}
@@ -288,7 +351,10 @@ const Scope3 = () => {
               className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
-            <label>4.8 Food, drink and other miscellaneous consumables</label>
+            <label>
+              4.8 Food, drink and other miscellaneous consumables
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+            </label>
             <input
               value={scope3["4.8"]}
               onChange={(e) => setScope3({ ...scope3, 4.8: e.target.value })}
@@ -296,7 +362,10 @@ const Scope3 = () => {
               className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
-            <label>4.9 Books & other physical media</label>
+            <label>
+              4.9 Books & other physical media
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+            </label>
             <input
               value={scope3["4.9"]}
               onChange={(e) => setScope3({ ...scope3, 4.9: e.target.value })}
@@ -308,7 +377,10 @@ const Scope3 = () => {
 
             <h1 className="font-bold mb-5">Capital Goods & Expenses</h1>
 
-            <label>5.1 Purchased vehicles</label>
+            <label>
+              5.1 Purchased vehicles
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+            </label>
             <input
               value={scope3["5.1"]}
               onChange={(e) => setScope3({ ...scope3, 5.1: e.target.value })}
@@ -318,6 +390,7 @@ const Scope3 = () => {
 
             <label>
               5.2 Audio visual & communication products (phones, TVs etc)
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
             </label>
             <input
               value={scope3["5.2"]}
@@ -328,6 +401,7 @@ const Scope3 = () => {
 
             <label>
               5.3 Office hardware (computers, printers, copiers etc)
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
             </label>
             <input
               value={scope3["5.3"]}
@@ -336,7 +410,10 @@ const Scope3 = () => {
               className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
-            <label>5.4 Other machinery, tools & equipment</label>
+            <label>
+              5.4 Other machinery, tools & equipment
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+            </label>
             <input
               value={scope3["5.4"]}
               onChange={(e) => setScope3({ ...scope3, 5.4: e.target.value })}
@@ -348,7 +425,10 @@ const Scope3 = () => {
 
             <h1 className="font-bold mb-5">Services</h1>
 
-            <label>6.1 Legal, accounting & consultancy services</label>
+            <label>
+              6.1 Legal, accounting & consultancy services
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+            </label>
             <input
               value={scope3["6.1"]}
               onChange={(e) => setScope3({ ...scope3, 6.1: e.target.value })}
@@ -359,6 +439,7 @@ const Scope3 = () => {
             <label>
               6.2 IT Services (includes software, subscriptions, cloud
               computing, IT outsourcing etc)
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
             </label>
             <input
               value={scope3["6.2"]}
@@ -367,7 +448,10 @@ const Scope3 = () => {
               className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
-            <label>6.3 Insurance, Superannuation & pensions</label>
+            <label>
+              6.3 Insurance, Superannuation & pensions
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+            </label>
             <input
               value={scope3["6.3"]}
               onChange={(e) => setScope3({ ...scope3, 6.3: e.target.value })}
@@ -375,7 +459,10 @@ const Scope3 = () => {
               className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
-            <label>6.4 Banking fees etc</label>
+            <label>
+              6.4 Banking fees etc
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+            </label>
             <input
               value={scope3["6.4"]}
               onChange={(e) => setScope3({ ...scope3, 6.4: e.target.value })}
@@ -383,7 +470,10 @@ const Scope3 = () => {
               className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
-            <label>6.5 Construction & renovation services</label>
+            <label>
+              6.5 Construction & renovation services
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+            </label>
             <input
               value={scope3["6.5"]}
               onChange={(e) => setScope3({ ...scope3, 6.5: e.target.value })}
@@ -398,6 +488,7 @@ const Scope3 = () => {
             <label>
               7.1 How many employees attend the office at least one day per
               week?
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
             </label>
             <input
               value={scope3["7.1"]}
@@ -408,6 +499,7 @@ const Scope3 = () => {
 
             <label>
               7.2 How many days a week are your staff in the office on average?
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
             </label>
 
             <p className="text-xs font-semibold text-gray-400">
@@ -421,7 +513,10 @@ const Scope3 = () => {
               className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
-            <label>7.3 How green is your office?</label>
+            <label>
+              7.3 How green is your office?
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+            </label>
 
             <div className="mt-3">
               <Select
@@ -464,7 +559,7 @@ const Scope3 = () => {
 
         <div className="p-10 flex-wrap justify-center lg:grid sm:flex grid pt-5 gap-5 lg:gap-10">
           <div className="flex items-center gap-3">
-            <i class="fas fa-passport text-4xl text-[#005504]"></i>
+            <i class="fas fa-passport text-4xl text-[#2dbf1d]"></i>
             <div>
               <h1 className="font-bold text-xl">TRAVEL</h1>
               <p className="font-semibold text-[#005504] text-lg">
@@ -474,7 +569,7 @@ const Scope3 = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            <i class="fas fa-car-side text-4xl text-[#005504]"></i>
+            <i class="fas fa-car-side text-4xl text-[#2dbf1d]"></i>
             <div>
               <h1 className="font-bold text-xl">COMMUTING</h1>
               <p className="font-semibold text-[#005504] text-lg">
@@ -484,7 +579,7 @@ const Scope3 = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            <i class="fas fa-pallet text-4xl text-[#005504]"></i>
+            <i class="fas fa-pallet text-4xl text-[#2dbf1d]"></i>
             <div>
               <h1 className="font-bold text-xl">FREIGHT & WAREHOUSING</h1>
               <p className="font-semibold text-[#005504] text-lg">
@@ -494,7 +589,7 @@ const Scope3 = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            <i class="fas fa-boxes text-4xl text-[#005504]"></i>
+            <i class="fas fa-boxes text-4xl text-[#2dbf1d]"></i>
             <div>
               <h1 className="font-bold text-xl">INVENTORY</h1>
               <p className="font-semibold text-[#005504] text-lg">
@@ -504,7 +599,7 @@ const Scope3 = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            <i class="fas fa-tools text-4xl text-[#005504]"></i>
+            <i class="fas fa-tools text-4xl text-[#2dbf1d]"></i>
             <div>
               <h1 className="font-bold text-xl">CAPITAL GOODS & EXPENSES</h1>
               <p className="font-semibold text-[#005504] text-lg">
@@ -514,7 +609,7 @@ const Scope3 = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            <i class="fas fa-file-contract text-4xl text-[#005504]"></i>
+            <i class="fas fa-file-contract text-4xl text-[#2dbf1d]"></i>
             <div>
               <h1 className="font-bold text-xl">SERVICES</h1>
               <p className="font-semibold text-[#005504] text-lg">
@@ -522,6 +617,20 @@ const Scope3 = () => {
               </p>
             </div>
           </div>
+        </div>
+
+        <div className="bg-[#E5FAE6] rounded-b-3xl p-6">
+          <h1 className="text-xl uppercase text-center font-bold">Total</h1>
+          <p className="text-center font-semibold text-[#005504] text-lg">
+            {(
+              Number(calculateTravel()) +
+              Number(calculateCommuting()) +
+              Number(calculateFreight()) +
+              Number(calculateInventory()) +
+              Number(calculateServices()) +
+              Number(calculateCapital())
+            ).toFixed(2)}
+          </p>
         </div>
       </div>
     </div>
