@@ -11,6 +11,9 @@ import Scope3 from "./pages/Scope3";
 import { ToastContainer } from "react-toastify";
 import { AuthProvider } from "./context/AuthProvider";
 import Reports from "./pages/Reports";
+import Reduce from "./pages/Reduce";
+import Offset from "./pages/Offset";
+import CostSavings from "./pages/CostSavings";
 
 function App() {
   return (
@@ -25,6 +28,9 @@ function App() {
             <Route path="/scope-2" element={<Scope2 />} />
             <Route path="/scope-3" element={<Scope3 />} />
             <Route path="/reports" element={<Reports />} />
+            <Route path="/reduce" element={<Reduce />} />
+            <Route path="/offset" element={<Offset />} />
+            <Route path="/cost-savings" element={<CostSavings />} />
           </Route>
 
           {/* auth */}

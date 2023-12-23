@@ -1,11 +1,15 @@
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import Logo from "/logo.png";
 import { menu } from "../utils/menu";
 import useAuth from "../hooks/useAuth";
 
 const LandingLayout = () => {
   const { auth, cerrarSesionAuth } = useAuth();
+
+  const location = useLocation();
+
+  console.log(location.pathname);
 
   const open = (e) => {
     document.getElementById(e)?.classList.toggle("hidden");
@@ -171,11 +175,25 @@ const LandingLayout = () => {
         </div>
       </div>
 
-      <div className="background-scopes"></div>
+      {location.pathname !== "/" &&
+        location.pathname !== "/reduce" &&
+        location.pathname !== "/offset" &&
+        location.pathname !== "/cost-savings" && (
+          <div className="background-scopes"></div>
+        )}
 
-      <div className="pt-36 xl:px-36 md:px-24 px-10">
-        <Outlet />
-      </div>
+      {location.pathname !== "/" &&
+      location.pathname !== "/reduce" &&
+      location.pathname !== "/offset" &&
+      location.pathname !== "/cost-savings" ? (
+        <div className="pt-36 xl:px-36 md:px-24 px-10">
+          <Outlet />
+        </div>
+      ) : (
+        <div className="pt-28">
+          <Outlet />
+        </div>
+      )}
 
       <div className="bg-[#2dbf1d] p-5">
         <p className="text-center text-xl text-white font-semibold">
