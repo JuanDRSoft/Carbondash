@@ -36,6 +36,7 @@ const AuthProvider = ({ children }) => {
     2.3: 0,
     2.4: 0,
     2.5: 0,
+    2.6: 0,
 
     3: "",
     3.1: 0,
@@ -53,6 +54,7 @@ const AuthProvider = ({ children }) => {
     4: "",
     4.1: 0,
     5: "",
+    "5.0": "",
     5.1: "",
     5.2: "",
     5.3: "",
@@ -330,6 +332,8 @@ const AuthProvider = ({ children }) => {
         "4.1 How many lightbulbs are in your business premises?": Number(
           scope2["4.1"]
         ),
+        "5. Do you have solar panels installed in your business premises?":
+          scope2["5.0"],
         "5.1 Is your business located in a small or large building?": scope2[5],
         "5.1 Is it a single or multi tenant building?": scope2["5.1"],
         "5.2 How's the weather? Is it generally sunny where you are? Are there any trees obstructing the roof?":
@@ -407,6 +411,9 @@ const AuthProvider = ({ children }) => {
         "2.3 Walking / cycling travel per week (km)": Number(scope3["2.3"]),
         "2.4 Car travel per week (km)": Number(scope3["2.4"]),
         "2.5 Carpooling travel per week (km)": Number(scope3["2.5"]),
+        "2.6 Energy use by employees during days worked at home": Number(
+          scope3["2.6"]
+        ),
 
         "3.1 Couriers & road freight": Number(scope3["3.1"]),
         "3.2 Air freight": Number(scope3["3.2"]),

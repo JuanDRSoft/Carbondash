@@ -67,16 +67,12 @@ const Scope2 = () => {
             have your electricity bill handy to accurately provide information
             for this section. See our Scope 2 guide for more info.
           </p>
-
           <hr className="mt-5 mb-5" />
-
           <h1 className="font-bold mb-5">ELECTRICITY</h1>
-
           <label>
             1. How many locations / premises does your company own or lease?
             <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
           </label>
-
           <div className="mt-3">
             <Select
               value={scope2["1"]}
@@ -92,12 +88,10 @@ const Scope2 = () => {
               ]}
             />
           </div>
-
           <label>
             2. What country are your business premises located in?
             <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
           </label>
-
           <div className="mt-3">
             <Select
               value={scope2["2"]}
@@ -122,7 +116,6 @@ const Scope2 = () => {
               ]}
             />
           </div>
-
           {scope2["2"].includes("Australia") && (
             <>
               <label>
@@ -139,7 +132,6 @@ const Scope2 = () => {
               </div>
             </>
           )}
-
           <div className="grid grid-cols-2 gap-10 mb-5">
             <div>
               <label>
@@ -177,12 +169,10 @@ const Scope2 = () => {
               />
             </div>
           </div>
-
           <label>
             4. Do you use LED lighting in your business premises?
             <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
           </label>
-
           <div className="mt-3">
             <Select
               value={scope2["4"]}
@@ -190,7 +180,6 @@ const Scope2 = () => {
               people={["Yes", "No"]}
             />
           </div>
-
           {scope2["4"].includes("NO") && (
             <>
               <label>
@@ -206,24 +195,41 @@ const Scope2 = () => {
               />
             </>
           )}
-
           <label>
-            5. Is your business located in a small or large building?
+            5. Do you have solar panels installed in your business premises?
             <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
           </label>
-
           <div className="mt-3">
             <Select
-              value={scope2["5"]}
-              set={(e) => setScope2({ ...scope2, 5: e })}
-              people={["Small", "Large", "No building - we work remotely"]}
+              value={scope2["5.0"]}
+              set={(e) => setScope2({ ...scope2, "5.0": e })}
+              people={["Yes", "No"]}
             />
           </div>
+
+          {scope2["5.0"].includes("No") && (
+            <>
+              <label>
+                5.1 Is your business located in a small or large building?
+                <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+              </label>{" "}
+              <p className="text-xs font-semibold text-gray-400">
+                Large is considered anything above 5 storeys tall
+              </p>
+              <div className="mt-3">
+                <Select
+                  value={scope2["5"]}
+                  set={(e) => setScope2({ ...scope2, 5: e })}
+                  people={["Small", "Large", "No building - we work remotely"]}
+                />
+              </div>
+            </>
+          )}
 
           {scope2["5"].includes("Small") && (
             <>
               <label>
-                5.1 Is it a single or multi tenant building?
+                5.2 Is it a single or multi tenant building?
                 <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
               </label>
 
@@ -236,13 +242,11 @@ const Scope2 = () => {
               </div>
             </>
           )}
-
           <label>
-            5.2 How's the weather? Is it generally sunny where you are? Are
+            5.3 How's the weather? Is it generally sunny where you are? Are
             there any trees obstructing the roof?
             <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
           </label>
-
           <div className="mt-3">
             <Select
               value={scope2["5.2"]}
@@ -255,17 +259,20 @@ const Scope2 = () => {
             />
           </div>
 
-          <label>
-            5.3 What is your address?
-            <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
-          </label>
-
-          <input
-            value={scope2["5.3"]}
-            onChange={(e) => setScope2({ ...scope2, 5.3: e.target.value })}
-            type="text"
-            className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
-          />
+          {scope2["5.2"] !== "" && (
+            <>
+              <label>
+                5.4 What is your address?
+                <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+              </label>
+              <input
+                value={scope2["5.3"]}
+                onChange={(e) => setScope2({ ...scope2, 5.3: e.target.value })}
+                type="text"
+                className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              />
+            </>
+          )}
         </div>
 
         <div className="bg-[#E5FAE6] rounded-b-3xl p-6 flex justify-end pr-16">
@@ -279,6 +286,8 @@ const Scope2 = () => {
       </div>
 
       <div className="shadow-xl border rounded-3xl mt-10 lg:mt-0 bg-white">
+        <h1 className="text-center mt-10 font-bold text-3xl">CO2</h1>
+
         <div className="flex items-center gap-3 justify-center p-10">
           <i class="fas fa-plug text-4xl text-[#2dbf1d]"></i>
           <div>

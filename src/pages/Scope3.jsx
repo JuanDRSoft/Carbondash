@@ -79,7 +79,7 @@ const Scope3 = () => {
       <div className="shadow-xl border rounded-3xl bg-white">
         <div className="p-5">
           <h1 className="font-bold text-3xl">Scope 3</h1>
-          <p className="mt-4"></p>
+          <p className="mt-4 mb-4"></p>
 
           <hr className="mt-5 mb-5" />
 
@@ -175,7 +175,7 @@ const Scope3 = () => {
               value={scope3["2.1"]}
               onChange={(e) => setScope3({ ...scope3, 2.1: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <label>
@@ -186,7 +186,7 @@ const Scope3 = () => {
               value={scope3["2.2"]}
               onChange={(e) => setScope3({ ...scope3, 2.2: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <label>
@@ -197,7 +197,7 @@ const Scope3 = () => {
               value={scope3["2.3"]}
               onChange={(e) => setScope3({ ...scope3, 2.3: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <label>
@@ -208,7 +208,7 @@ const Scope3 = () => {
               value={scope3["2.4"]}
               onChange={(e) => setScope3({ ...scope3, 2.4: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <label>
@@ -219,7 +219,18 @@ const Scope3 = () => {
               value={scope3["2.5"]}
               onChange={(e) => setScope3({ ...scope3, 2.5: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+            />
+
+            <label>
+              2.6 Energy use by employees during days worked at home
+              <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+            </label>
+            <input
+              value={scope3["2.6"]}
+              onChange={(e) => setScope3({ ...scope3, 2.6: e.target.value })}
+              type="number"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <hr className="mt-5 mb-5" />
@@ -234,7 +245,7 @@ const Scope3 = () => {
               value={scope3["3.1"]}
               onChange={(e) => setScope3({ ...scope3, 3.1: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <label>
@@ -245,7 +256,7 @@ const Scope3 = () => {
               value={scope3["3.2"]}
               onChange={(e) => setScope3({ ...scope3, 3.2: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <label>
@@ -256,7 +267,7 @@ const Scope3 = () => {
               value={scope3["3.3"]}
               onChange={(e) => setScope3({ ...scope3, 3.3: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <label>
@@ -267,7 +278,7 @@ const Scope3 = () => {
               value={scope3["3.4"]}
               onChange={(e) => setScope3({ ...scope3, 3.4: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <hr className="mt-5 mb-5" />
@@ -282,7 +293,7 @@ const Scope3 = () => {
               value={scope3["4.1"]}
               onChange={(e) => setScope3({ ...scope3, 4.1: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <label>
@@ -293,7 +304,7 @@ const Scope3 = () => {
               value={scope3["4.2"]}
               onChange={(e) => setScope3({ ...scope3, 4.2: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <label>
@@ -304,7 +315,7 @@ const Scope3 = () => {
               value={scope3["4.3"]}
               onChange={(e) => setScope3({ ...scope3, 4.3: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <label>
@@ -315,7 +326,7 @@ const Scope3 = () => {
               value={scope3["4.4"]}
               onChange={(e) => setScope3({ ...scope3, 4.4: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <label>
@@ -326,7 +337,7 @@ const Scope3 = () => {
               value={scope3["4.5"]}
               onChange={(e) => setScope3({ ...scope3, 4.5: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <label>
@@ -337,7 +348,7 @@ const Scope3 = () => {
               value={scope3["4.6"]}
               onChange={(e) => setScope3({ ...scope3, 4.6: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <label>
@@ -348,7 +359,7 @@ const Scope3 = () => {
               value={scope3["4.7"]}
               onChange={(e) => setScope3({ ...scope3, 4.7: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <label>
@@ -359,7 +370,7 @@ const Scope3 = () => {
               value={scope3["4.8"]}
               onChange={(e) => setScope3({ ...scope3, 4.8: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <label>
@@ -370,7 +381,7 @@ const Scope3 = () => {
               value={scope3["4.9"]}
               onChange={(e) => setScope3({ ...scope3, 4.9: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <hr className="mt-5 mb-5" />
@@ -385,7 +396,7 @@ const Scope3 = () => {
               value={scope3["5.1"]}
               onChange={(e) => setScope3({ ...scope3, 5.1: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <label>
@@ -396,7 +407,7 @@ const Scope3 = () => {
               value={scope3["5.2"]}
               onChange={(e) => setScope3({ ...scope3, 5.2: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <label>
@@ -407,7 +418,7 @@ const Scope3 = () => {
               value={scope3["5.3"]}
               onChange={(e) => setScope3({ ...scope3, 5.3: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <label>
@@ -418,7 +429,7 @@ const Scope3 = () => {
               value={scope3["5.4"]}
               onChange={(e) => setScope3({ ...scope3, 5.4: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <hr className="mt-5 mb-5" />
@@ -433,7 +444,7 @@ const Scope3 = () => {
               value={scope3["6.1"]}
               onChange={(e) => setScope3({ ...scope3, 6.1: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <label>
@@ -445,7 +456,7 @@ const Scope3 = () => {
               value={scope3["6.2"]}
               onChange={(e) => setScope3({ ...scope3, 6.2: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <label>
@@ -456,7 +467,7 @@ const Scope3 = () => {
               value={scope3["6.3"]}
               onChange={(e) => setScope3({ ...scope3, 6.3: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <label>
@@ -467,7 +478,7 @@ const Scope3 = () => {
               value={scope3["6.4"]}
               onChange={(e) => setScope3({ ...scope3, 6.4: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <label>
@@ -478,7 +489,7 @@ const Scope3 = () => {
               value={scope3["6.5"]}
               onChange={(e) => setScope3({ ...scope3, 6.5: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <hr className="mt-5 mb-5" />
@@ -494,7 +505,7 @@ const Scope3 = () => {
               value={scope3["7.1"]}
               onChange={(e) => setScope3({ ...scope3, 7.1: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <label>
@@ -510,7 +521,7 @@ const Scope3 = () => {
               value={scope3["7.2"]}
               onChange={(e) => setScope3({ ...scope3, 7.2: e.target.value })}
               type="number"
-              className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
+              className="mt-4 mb-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
             />
 
             <label>
@@ -555,11 +566,11 @@ const Scope3 = () => {
       </div>
 
       <div className="shadow-xl border rounded-3xl mt-10 lg:mt-0 bg-white">
-        <h1 className="text-center mt-10 font-bold text-3xl"></h1>
+        <h1 className="text-center mt-10 font-bold text-3xl">CO2</h1>
 
         <div className="p-10 flex-wrap justify-center lg:grid sm:flex grid pt-5 gap-5 lg:gap-10">
           <div className="flex items-center gap-3">
-            <i class="fas fa-passport text-4xl text-[#2dbf1d]"></i>
+            <i class="fas fa-passport text-4xl text-[#2dbf1d] md:pl-3"></i>
             <div>
               <h1 className="font-bold text-xl">TRAVEL</h1>
               <p className="font-semibold text-[#005504] text-lg">
@@ -609,7 +620,7 @@ const Scope3 = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            <i class="fas fa-file-contract text-4xl text-[#2dbf1d]"></i>
+            <i class="fas fa-file-contract text-4xl text-[#2dbf1d] pl-2"></i>
             <div>
               <h1 className="font-bold text-xl">SERVICES</h1>
               <p className="font-semibold text-[#005504] text-lg">
