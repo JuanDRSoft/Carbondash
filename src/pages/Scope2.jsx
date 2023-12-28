@@ -285,7 +285,7 @@ const Scope2 = () => {
         </div>
       </div>
 
-      <div className="shadow-xl border rounded-3xl mt-10 lg:mt-0 bg-white">
+      <div className="shadow-xl border rounded-3xl mt-10 lg:mt-0 bg-white relative pb-24">
         <h1 className="text-center mt-10 font-bold text-3xl">CO2</h1>
 
         <div className="flex items-center gap-3 justify-center p-10">
@@ -298,7 +298,7 @@ const Scope2 = () => {
           </div>
         </div>
 
-        <div className="bg-[#E5FAE6] rounded-b-3xl p-6">
+        <div className="bg-[#E5FAE6] rounded-b-3xl p-6 absolute bottom-0 w-full">
           <h1 className="text-xl uppercase text-center font-bold">Total</h1>
           <p className="text-center font-semibold text-[#005504] text-lg">
             {calculateElectricity().toFixed(2)}
