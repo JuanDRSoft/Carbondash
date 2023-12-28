@@ -242,22 +242,26 @@ const Scope2 = () => {
               </div>
             </>
           )}
-          <label>
-            5.3 How's the weather? Is it generally sunny where you are? Are
-            there any trees obstructing the roof?
-            <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
-          </label>
-          <div className="mt-3">
-            <Select
-              value={scope2["5.2"]}
-              set={(e) => setScope2({ ...scope2, 5.2: e })}
-              people={[
-                "Generally sunny, no trees obstructing the roof",
-                "Generally sunny, but there may be some obstructions of the roof",
-                "Generally not very sunny",
-              ]}
-            />
-          </div>
+          {scope2["5.1"] !== "" && (
+            <>
+              <label>
+                5.3 How's the weather? Is it generally sunny where you are? Are
+                there any trees obstructing the roof?
+                <i class="fas fa-info-circle text-sm ml-1 text-[#2dbf1d]"></i>
+              </label>
+              <div className="mt-3">
+                <Select
+                  value={scope2["5.2"]}
+                  set={(e) => setScope2({ ...scope2, 5.2: e })}
+                  people={[
+                    "Generally sunny, no trees obstructing the roof",
+                    "Generally sunny, but there may be some obstructions of the roof",
+                    "Generally not very sunny",
+                  ]}
+                />
+              </div>
+            </>
+          )}
 
           {scope2["5.2"] !== "" && (
             <>
@@ -286,7 +290,7 @@ const Scope2 = () => {
       </div>
 
       <div className="shadow-xl border rounded-3xl mt-10 lg:mt-0 bg-white relative pb-24">
-        <h1 className="text-center mt-10 font-bold text-3xl">CO2</h1>
+        <h1 className="text-center mt-5 font-bold text-3xl">CO2</h1>
 
         <div className="flex items-center gap-3 justify-center p-10">
           <i class="fas fa-plug text-4xl text-[#2dbf1d]"></i>
@@ -298,7 +302,7 @@ const Scope2 = () => {
           </div>
         </div>
 
-        <div className="bg-[#E5FAE6] rounded-b-3xl p-6 absolute bottom-0 w-full">
+        <div className="bg-[#E5FAE6] rounded-b-3xl p-3 absolute bottom-0 w-full">
           <h1 className="text-xl uppercase text-center font-bold">Total</h1>
           <p className="text-center font-semibold text-[#005504] text-lg">
             {calculateElectricity().toFixed(2)}
