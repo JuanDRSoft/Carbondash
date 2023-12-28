@@ -146,10 +146,13 @@ const Scope1 = () => {
                       Leave this blank if you answered question 1.2
                     </p>
 
-                    <Select
+                    <input
                       value={scope1["1.1"]}
-                      set={(e) => setScope1({ ...scope1, 1.1: e })}
-                      people={["", "12.0", "213.0", "500.0"]}
+                      onChange={(e) =>
+                        setScope1({ ...scope1, 1.1: e.target.value })
+                      }
+                      type="number"
+                      className="mt-4 w-full outline-[#2dbf1d] bg-white py-2 pl-3 pr-3 text-left border rounded-lg sm:text-sm"
                     />
                   </div>
                 )}

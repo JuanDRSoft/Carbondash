@@ -25,7 +25,7 @@ const AuthProvider = ({ children }) => {
   const [scope1, setScope1] = useState({
     name: "",
     1: "",
-    1.1: "",
+    1.1: 0,
     1.2: 0,
     1.3: 0,
     1.4: 0,
@@ -233,7 +233,7 @@ const AuthProvider = ({ children }) => {
         "1. Did your company own or maintain long-term leases on vehicles?":
           scope1[1],
         "1.1 How many litres of gasoline / unleaded petrol did you use in your vehicles?":
-          scope1["1.1"],
+          Number(scope1["1.1"]),
         "1.2 How much did your company spend on gasoline / unleaded petrol fuel for your vehicles?":
           Number(scope1["1.2"]),
         "1.3 How many litres of diesel did you use in your vehicles?":

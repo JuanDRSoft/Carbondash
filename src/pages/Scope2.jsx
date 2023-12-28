@@ -305,7 +305,7 @@ const Scope2 = () => {
         <div className="bg-[#E5FAE6] rounded-b-3xl p-3 absolute bottom-0 w-full">
           <h1 className="text-xl uppercase text-center font-bold">Total</h1>
           <p className="text-center font-semibold text-[#005504] text-lg">
-            {calculateElectricity().toFixed(2)}
+            {calculateElectricity()}
           </p>
         </div>
       </div>
