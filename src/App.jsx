@@ -14,6 +14,7 @@ import Reports from "./pages/Reports";
 import Reduce from "./pages/Reduce";
 import Offset from "./pages/Offset";
 import CostSavings from "./pages/CostSavings";
+import Payment from "./auth/Payment";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route path="/reduce" element={<Reduce />} />
             <Route path="/offset" element={<Offset />} />
             <Route path="/cost-savings" element={<CostSavings />} />
+            <Route path="/payments" element={<Payment />} />
           </Route>
 
           {/* auth */}

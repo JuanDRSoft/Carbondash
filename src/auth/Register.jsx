@@ -71,7 +71,7 @@ const Register = () => {
       setAuth(body.fields);
       localStorage.setItem("Token", token);
       toast.success("Profile Created Successfully");
-      navigate("/");
+      navigate("/payments");
     } catch (error) {
       toast.error(error);
     }
