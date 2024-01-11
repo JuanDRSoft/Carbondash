@@ -23,6 +23,7 @@ const AuthProvider = ({ children }) => {
   const [scope3Report, setScope3Report] = useState({});
 
   const [scope1, setScope1] = useState({
+    time: "",
     name: "",
     1: "",
     1.1: 0,
@@ -229,6 +230,8 @@ const AuthProvider = ({ children }) => {
 
     const bodyData = {
       fields: {
+        "0. What time period would you like to calculate emissions for?":
+          scope1.time,
         "Customer Name": auth.name,
         "1. Did your company own or maintain long-term leases on vehicles?":
           scope1[1],
@@ -281,13 +284,13 @@ const AuthProvider = ({ children }) => {
         config
       );
 
-      const { report } = await axios.patch(
+      const report = await axios.patch(
         `${baseUrl}/appJCp1Y4OgnXBC9C/Reports/recoCyA3wFRFWbw8i`,
         bodyReport,
         config
       );
 
-      setScope1Report(report.fields);
+      setScope1Report(report.data.fields);
 
       localStorage.setItem("lastId", data.id);
 
@@ -357,15 +360,16 @@ const AuthProvider = ({ children }) => {
         config
       );
 
-      const { report } = await axios.patch(
+      const report = await axios.patch(
         `${baseUrl}/appJCp1Y4OgnXBC9C/Reports/rec4JE07Ns1dg80lV`,
         bodyReport,
         config
       );
 
-      setScope2Report(report.fields);
+      setScope2Report(report.data.fields);
 
       toast.success("Scope 2 Saved Successfully");
+      navigate("/scope-3");
     } catch (error) {
       console.log(error);
     }
@@ -476,13 +480,13 @@ const AuthProvider = ({ children }) => {
         config
       );
 
-      const { report } = await axios.patch(
+      const report = await axios.patch(
         `${baseUrl}/appJCp1Y4OgnXBC9C/Reports/rechRbElJ3m82lawO`,
         bodyReport,
         config
       );
 
-      setScope3Report(report.fields);
+      setScope3Report(report.data.fields);
 
       toast.success("Scope 3 Saved Successfully");
     } catch (error) {

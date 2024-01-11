@@ -10,7 +10,7 @@ const Select = ({ value, set, people }) => {
   return (
     <div className="">
       <Listbox value={value || selected} onChange={(e) => set(e)}>
-        <div className="relative mt-4 mb-5 ">
+        <div className="relative mt-4 mb-5">
           <Listbox.Button className="relative w-full outline-[#2dbf1d]  focus:outline outline-2 bg-white py-2 pl-3 pr-10 text-left border rounded-lg sm:text-sm">
             <span className="truncate bg-[#E5FAE6] rounded-full px-2">
               {value || selected.name}
@@ -28,7 +28,7 @@ const Select = ({ value, set, people }) => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="absolute mt-1 z-10 outline-[#2dbf1d]  focus:outline outline-2 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 sm:text-sm">
+            <Listbox.Options className="absolute mt-1 z-50 outline-[#2dbf1d]  focus:outline outline-2 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 sm:text-sm">
               {people.map((person, personIdx) => (
                 <Listbox.Option
                   key={personIdx}

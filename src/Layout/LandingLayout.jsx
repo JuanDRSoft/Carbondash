@@ -9,8 +9,6 @@ const LandingLayout = () => {
 
   const location = useLocation();
 
-  console.log(location.pathname);
-
   const open = (e) => {
     document.getElementById(e)?.classList.toggle("hidden");
   };

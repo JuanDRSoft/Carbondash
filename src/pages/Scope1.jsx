@@ -1,10 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Select from "../components/Select";
 import useAuth from "../hooks/useAuth";
+import ModalSelectPeriod from "../components/ModalSelectPeriod";
 
 const Scope1 = () => {
   const { scope1, setScope1, saveScope1 } = useAuth();
   const [progress, setProgress] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  useEffect(() => {
+    openModal();
+  }, []);
 
   const calculeVehicle = () => {
     if (scope1["1"].includes("Gasoline")) {
@@ -504,6 +514,8 @@ const Scope1 = () => {
           </p>
         </div>
       </div>
+
+      <ModalSelectPeriod isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
 };
